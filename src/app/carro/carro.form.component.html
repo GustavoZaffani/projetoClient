@@ -1,0 +1,40 @@
+<p-card>
+  <form>
+    <p-header>Cadastro de Carro</p-header>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="id">Código</label>
+          <input type="text"
+                 id="id"
+                 [disabled]="true"
+                 pInputText
+                 placeholder="Testando formulário">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text"
+                 id="nome"
+                 pInputText
+                 placeholder="Informe o nome">
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label for="Marca">Marca</label>
+          <input type="text"
+                 id="marca"
+                 pInputText
+                 placeholder="Informe a marca">
+        </div>
+      </div>
+    </div>
+  </form>
+</p-card>
