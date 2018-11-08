@@ -1,1 +1,7 @@
-
+.teste {
+  border-bottom: black 1px solid;
+  font-size: 2rem;
+  padding-left: 24px;
+  font-family: serif;
+  color: #787c80;
+}

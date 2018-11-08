@@ -7,10 +7,12 @@ import {ToolbarrModule} from './toolbar/toolbar.module';
 import {CarroModule} from './carro/carro.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HomeModule} from './home/home.module';
+import { VendaListComponent } from './venda/venda.list.component';
+import {VendaModule} from './venda/venda.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +20,8 @@ import {HomeModule} from './home/home.module';
     SidenavModule,
     ToolbarrModule,
     CarroModule,
-    HomeModule
+    HomeModule,
+    VendaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

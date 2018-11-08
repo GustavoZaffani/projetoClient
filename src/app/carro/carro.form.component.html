@@ -1,40 +1,246 @@
-<p-card>
-  <form>
-    <p-header>Cadastro de Carro</p-header>
+<div class="container">
+  <p-card [style]="{width: '1100px', height: '300px'}" styleClass="ui-card-shadow ui-card-">
+    <p-header>
+      Veículo
+    </p-header>
+    <form>
 
-    <div class="row">
-      <div class="col-12">
-        <div class="form-group">
-          <label for="id">Código</label>
-          <input type="text"
-                 id="id"
-                 [disabled]="true"
-                 pInputText
-                 placeholder="Testando formulário">
+      <div class="row">
+        <div class="col-2">
+          <div class="form-group">
+            <label for="id">Código</label>
+            <input name="id"
+                   type="text"
+                   id="id"
+                   [disabled]="true"
+                   class="form-control">
+          </div>
+        </div>
+
+        <div class="col-5">
+          <div class="form-group">
+            <label for="marca">Marca</label>
+            <input name="marca"
+                   type="text"
+                   id="marca"
+                   pTooltip="Informe a marca"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
+        </div>
+
+        <div class="col-5">
+          <div class="form-group">
+            <label for="modelo">Modelo</label>
+            <input name="modelo"
+                   type="text"
+                   id="modelo"
+                   pTooltip="Informe o modelo"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-6">
-        <div class="form-group">
-          <label for="nome">Nome</label>
-          <input type="text"
-                 id="nome"
-                 pInputText
-                 placeholder="Informe o nome">
+      <div class="row">
+        <div class="col-3 col-md-3 col-xl-2">
+          <div class="form-group">
+            <label for="anoFab">Ano Fabricação</label>
+            <p-calendar name="anoFab"
+                        id="anoFab"
+                        dataType="string"
+                        pTooltip="Informe o Ano de Fabricação"
+                        tooltipPosition="top"
+                        dateFormat="dd/mm/yy">
+            </p-calendar>
+
+          </div>
+        </div>
+
+        <div class="col-3 col-md-3 col-xl-2">
+          <div class="form-group">
+            <label for="anoMod">Ano Modelo</label>
+            <p-calendar name="anoMod"
+                        id="anoMod"
+                        pTooltip="Informe o Ano do Modelo"
+                        tooltipPosition="top"
+                        dataType="string"
+                        dateFormat="dd/mm/yy">
+            </p-calendar>
+
+          </div>
+        </div>
+
+        <div class="col-3 col-md-3">
+          <div class="form-group">
+            <label for="cor">Cor</label>
+            <input name="cor"
+                   type="text"
+                   id="cor"
+                   pTooltip="Informe a cor"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
+        </div>
+
+        <div class="col-3 col-md-3">
+          <div class="form-group">
+            <label for="combustivel">Combustível</label>
+            <select class="custom-select"
+                    pTooltip="Selecione o tipo de Combustível"
+                    tooltipPosition="top"
+                    id="combustivel">
+              <option>Selecione</option>
+              <option value="f">Flex</option>
+              <option value="tf">Total Flex</option>
+              <option value="d">Diesel</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <div class="col-6">
-        <div class="form-group">
-          <label for="Marca">Marca</label>
-          <input type="text"
-                 id="marca"
-                 pInputText
-                 placeholder="Informe a marca">
+      <div class="row">
+        <div class="col-4 col-md-4">
+          <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <select class="custom-select"
+                    id="tipo"
+                    pTooltip="Informe o Tipo"
+                    tooltipPosition="top">
+              <option>Selecione o Tipo</option>
+              <option value="n">Novo</option>
+              <option value="sn">Semi-Novo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-4 col-md-4">
+          <div class="form-group">
+            <label for="categoria">Categoria</label>
+            <select class="custom-select"
+                    id="categoria"
+                    pTooltip="Informe a Categoria"
+                    tooltipPosition="top">
+              <option>Selecione a Categoria</option>
+              <option value="cr">Carro</option>
+              <option value="m">Moto</option>
+              <option value="ca">Caminhão</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-4 col-md-4">
+          <div class="form-group">
+            <label for="chassi">Chassi</label>
+            <input name="chassi"
+                   type="text"
+                   id="chassi"
+                   pTooltip="Informe o Nro do Chassi"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
         </div>
       </div>
-    </div>
-  </form>
-</p-card>
+
+      <div class="row">
+        <div class="col-4">
+
+        </div>
+      </div>
+    </form>
+  </p-card>
+</div>
+
+<br>
+
+<div class="container">
+  <p-card [style]="{body:'' ,width: '1100px', height: '260px'}" styleClass="ui-card-shadow ui-card-">
+    <p-header>Detalhes</p-header>
+    <form>
+
+      <div class="row">
+        <div class="col-3 col-md-3 col-xl-2">
+          <div class="form-group">
+            <label for="placa">Placa</label>
+            <p-inputMask mask="AAA-1111"
+                         characterPattern="[А-Яа-я]"
+                         placeholder="99/99/9999"
+                         slotChar="AAA-1111"
+                         pTooltip="Informe a Placa"
+                         tooltipPosition="top"
+                         [disabled]="true"
+            pInputText>
+            </p-inputMask>
+          </div>
+        </div>
+
+        <div class="col-3 col-md-3">
+          <div class="form-group">
+            <label for="km">Kilometragem</label>
+            <input name="km"
+                   id="km"
+                   type="number"
+                   class="form-control"
+                   pTooltip="Informe a Kilometragem"
+                   tooltipPosition="top">
+          </div>
+        </div>
+
+        <div class="col-3 col-md-3">
+          <div class="form-group">
+            <label>Origem</label>
+            <input name="origem"
+                   id="origem"
+                   type="text"
+                   class="form-control"
+                   pTooltip="Informe a origem do Veículo"
+                   tooltipPosition="top"
+                   [disabled]="true">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3 col-md-3">
+          <div class="form-group">
+            <label for="custo">Preço de Custo</label>
+            <input name="custo"
+                   id="custo"
+                   type="text"
+                   class="form-control"
+                   pTooltip="Informe o Preço de Custo"
+                   tooltipPosition="top">
+          </div>
+        </div>
+
+        <div class="col-3 col-md-3">
+          <div class="form-group">
+            <label for="venda">Preço de Venda</label>
+            <input name="venda"
+                   id="venda"
+                   type="text"
+                   class="form-control"
+                   pTooltip="Informe o Preço de Venda"
+                   tooltipPosition="top">
+          </div>
+        </div>
+
+        <div class="col-3 col-md-3">
+          <div class="form-group">
+            <label for="lucro">Estimativa Lucro</label>
+            <input name="lucro"
+                   id="lucro"
+                   type="text"
+                   class="form-control"
+                   [disabled]="true">
+          </div>
+        </div>
+      </div>
+
+    </form>
+    <p-footer>
+      <button pButton type="button" label="Salvar" icon="pi pi-check" style="margin-right: .25em"></button>
+      <button pButton type="button" label="Fechar" icon="pi pi-times" class="ui-button-secondary"></button>
+    </p-footer>
+  </p-card>
+</div>
