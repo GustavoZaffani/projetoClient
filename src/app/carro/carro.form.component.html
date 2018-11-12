@@ -1,7 +1,12 @@
+<app-toolbar></app-toolbar>
 <div class="container">
-  <p-card [style]="{width: '1100px', height: '300px'}" styleClass="ui-card-shadow ui-card-">
+  <p-card [style]="{width: '1100px', height: '320px'}" styleClass="ui-card-shadow ui-card-">
     <p-header>
-      Veículo
+      <div class="row">
+        <div class="menu-card col-12">
+          Veículo
+        </div>
+      </div>
     </p-header>
     <form>
 
@@ -43,31 +48,27 @@
       </div>
 
       <div class="row">
-        <div class="col-3 col-md-3 col-xl-2">
+        <div class="col-3 col-md-3">
           <div class="form-group">
             <label for="anoFab">Ano Fabricação</label>
-            <p-calendar name="anoFab"
-                        id="anoFab"
-                        dataType="string"
-                        pTooltip="Informe o Ano de Fabricação"
-                        tooltipPosition="top"
-                        dateFormat="dd/mm/yy">
-            </p-calendar>
-
+            <input name="anoFab"
+                   type="text"
+                   id="anoFab"
+                   pTooltip="Informe o Ano de Fabricação"
+                   tooltipPosition="top"
+                   class="form-control">
           </div>
         </div>
 
-        <div class="col-3 col-md-3 col-xl-2">
+        <div class="col-3 col-md-3">
           <div class="form-group">
             <label for="anoMod">Ano Modelo</label>
-            <p-calendar name="anoMod"
-                        id="anoMod"
-                        pTooltip="Informe o Ano do Modelo"
-                        tooltipPosition="top"
-                        dataType="string"
-                        dateFormat="dd/mm/yy">
-            </p-calendar>
-
+            <input name="anoMod"
+                   type="number"
+                   id="anoMod"
+                   pTooltip="Informe o Ano do Modelo"
+                   tooltipPosition="top"
+                   class="form-control">
           </div>
         </div>
 
@@ -154,8 +155,14 @@
 <br>
 
 <div class="container">
-  <p-card [style]="{body:'' ,width: '1100px', height: '260px'}" styleClass="ui-card-shadow ui-card-">
-    <p-header>Detalhes</p-header>
+  <p-card [style]="{body:'' ,width: '1100px', height: '310px'}" styleClass="ui-card-shadow ui-card-">
+    <p-header>
+      <div class="row">
+        <div class="col-12 menu-card">
+          Detalhes
+        </div>
+      </div>
+    </p-header>
     <form>
 
       <div class="row">
@@ -168,7 +175,7 @@
                          slotChar="AAA-1111"
                          pTooltip="Informe a Placa"
                          tooltipPosition="top"
-                         [disabled]="true"
+                         [disabled]="false"
             pInputText>
             </p-inputMask>
           </div>
@@ -196,6 +203,19 @@
                    pTooltip="Informe a origem do Veículo"
                    tooltipPosition="top"
                    [disabled]="true">
+          </div>
+        </div>
+
+        <div class="col-3 col-xl-3">
+          <div class="form-group">
+            <label for="dtCompra">Data da Compra</label>
+            <p-calendar name="dtCompra"
+                        id="dtCompra"
+                        pTooltip="Informe a Data da Compra"
+                        tooltipPosition="top"
+                        dataType="string"
+                        dateFormat="dd/mm/yy">
+            </p-calendar>
           </div>
         </div>
       </div>
@@ -239,6 +259,7 @@
 
     </form>
     <p-footer>
+      <div class="row borda-superior"></div>
       <button pButton type="button" label="Salvar" icon="pi pi-check" style="margin-right: .25em"></button>
       <button pButton type="button" label="Fechar" icon="pi pi-times" class="ui-button-secondary"></button>
     </p-footer>

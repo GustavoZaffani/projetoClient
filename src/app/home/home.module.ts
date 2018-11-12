@@ -6,6 +6,8 @@ import {ToolbarrModule} from '../toolbar/toolbar.module';
 import {CarroModule} from '../carro/carro.module';
 import {CardModule} from 'primeng/card';
 import {VendaModule} from '../venda/venda.module';
+import {PessoaModule} from '../pessoa/pessoa.module';
+import {InputMaskModule} from 'primeng/primeng';
 
 @NgModule({
   imports: [
@@ -14,7 +16,9 @@ import {VendaModule} from '../venda/venda.module';
     ToolbarrModule,
     CarroModule,
     CardModule,
-    VendaModule
+    VendaModule,
+    InputMaskModule,
+    PessoaModule
   ],
   declarations: [
     HomeComponent

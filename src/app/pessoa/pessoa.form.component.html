@@ -1,0 +1,297 @@
+<app-toolbar></app-toolbar>
+<div class="container">
+  <p-card [style]="{width: '1100px', height: '630px'}" styleClass="ui-card-shadow ui-card-">
+    <p-header>
+      <div class="row">
+        <div class="col-12 menu-card">
+          Pessoa
+        </div>
+      </div>
+    </p-header>
+    <form>
+      <div class="row">
+
+        <div class="col-3 col-md-3">
+          <div class="form-group">
+            <label for="id">Código</label>
+            <input name="id"
+                   id="id"
+                   type="text"
+                   class="form-control"
+                   [disabled]="true">
+          </div>
+        </div>
+
+        <div class="col-9 col-md-9">
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input name="nome"
+                   id="nome"
+                   type="text"
+                   class="form-control"
+                   pTooltip="Informe o Nome"
+                   tooltipPosition="top">
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+
+        <div class="col-3 col-md-3">
+          <div class="form-group">
+            <label for="sexo">Sexo</label>
+            <select name="sexo"
+                    id="sexo"
+                    pTooltip="Selecione o Sexo"
+                    tooltipPosition="top"
+                    class="form-control">
+              <option>Selecione</option>
+              <option value="m">Masculino</option>
+              <option value="f">Feminino</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-3 col-md-3">
+          <div class="form-group">
+            <label for="civil">Estado Civil</label>
+            <select name="civil"
+                    id="civil"
+                    pTooltip="Selecione o Estado Civil"
+                    tooltipPosition="top"
+                    class="form-control">
+              <option>Selecione</option>
+              <option value="s">Solteiro(a)</option>
+              <option value="c">Casado(a)</option>
+              <option value="d">Divorciado(a)</option>
+              <option value="v">Viúvo(a)</option>
+              <option value="o">Outro(a)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-3 col-md-3">
+          <div class="form-group">
+            <label for="categoria">Categoria</label>
+            <select name="categoria"
+                    id="categoria"
+                    pTooltip="Selecione a Categoria"
+                    tooltipPosition="top"
+                    class="form-control">
+              <option>Selecione</option>
+              <option value="c">Cliente</option>
+              <option value="v">Vendedor</option>
+              <option value="f">Fornecedor</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-3 col-md-3">
+          <div class="form-group">
+            <label for="tipo">Tipo de Pessoa</label>
+            <select name="tipo"
+                    id="tipo"
+                    pTooltip="Selecione o Tipo da Pessoa"
+                    tooltipPosition="top"
+                    class="form-control">
+              <option>Selecione</option>
+              <option value="f">Física</option>
+              <option value="j">Jurídica</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+
+        <div class="col-3">
+          <div class="form-group">
+            <label for="cpf">CPF/CNPJ</label>
+            <input name="cpf"
+                   id="cpf"
+                   type="number"
+                   pTooltip="Informe o CPF/CNPJ"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="form-group">
+            <label for="rg">RG</label>
+            <input name="rg"
+                   id="rg"
+                   type="text"
+                   pTooltip="Informe o RG"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="form-group">
+            <label for="ie">Inscrição Estadual</label>
+            <input name="ie"
+                   id="ie"
+                   type="text"
+                   pTooltip="Informe a IE"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-2">
+          <div class="form-group">
+            <label for="cep">CEP</label>
+            <p-inputMask name="cep"
+                         id="cep"
+                         mask="00.000-000"
+                         placeholder="00.000-000"
+                         pInputText
+                         pTooltip="Informe o CEP"
+                         tooltipPosition="top">
+            </p-inputMask>
+          </div>
+        </div>
+
+        <div class="col-5">
+          <div class="form-group">
+            <label for="endereco">Endereço</label>
+            <input name="endereco"
+                   id="endereco"
+                   type="text"
+                   pTooltip="Informe o Endereço"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="form-group">
+            <label for="Complemento">Complemento</label>
+            <input name="complemento"
+                   id="complemento"
+                   type="text"
+                   pTooltip="Informe o Complemento"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
+        </div>
+
+        <div class="col-2">
+          <div class="form-group">
+            <label for="numero">Número</label>
+            <input name="numero"
+                   id="numero"
+                   type="text"
+                   pTooltip="Informe o Número"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-5">
+          <div class="form-group">
+            <label for="cidade">Cidade</label>
+            <input name="cidade"
+                   id="cidade"
+                   type="text"
+                   pTooltip="Informe a Cidade"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="form-group">
+            <label for="bairro">Bairro</label>
+            <input name="bairro"
+                   id="bairro"
+                   type="text"
+                   pTooltip="Informe o Bairro"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="form-group">
+            <label for="uf">UF</label>
+            <p-autoComplete name="uf"
+                            id="uf"
+                            appendTo="body"
+                            [dropdown]="true"
+                            [forceSelection]="true">
+            </p-autoComplete>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-3">
+          <div class="form-group">
+            <label for="celular">Tel. Celular</label>
+            <p-inputMask id="celular"
+                         name="celular"
+                         mask="(99) 99999-9999"
+                         placeholder="(99) 99999-9999"
+                         pTooltip="Informe o Tel. Celular"
+                         tooltipPosition="top">
+            </p-inputMask>
+
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="form-group">
+            <label for="telefone">Tel. Residencial</label>
+            <p-inputMask id="telefone"
+                         name="telefone"
+                         mask="(99) 9999-9999"
+                         placeholder="(99) 9999-9999"
+                         pTooltip="Informe o Tel. Residencial"
+                         tooltipPosition="top">
+            </p-inputMask>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input name="email"
+                   id="email"
+                   type="text"
+                   pTooltip="Informe o Email"
+                   tooltipPosition="top"
+                   class="form-control">
+          </div>
+        </div>
+
+      </div>
+    <p-footer>
+      <div class="row borda-superior"></div>
+      <button pButton
+              type="button"
+              label="Salvar"
+              icon="pi pi-check"
+              style="margin-right: .25em">
+      </button>
+      <button pButton
+              type="button"
+              label="Fechar"
+              icon="pi pi-times"
+              class="ui ui-button-secondary"
+              style="margin-right: .25em">
+      </button>
+    </p-footer>
+    </form>
+  </p-card>
+</div>

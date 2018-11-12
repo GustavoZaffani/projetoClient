@@ -1,6 +1,13 @@
+<app-toolbar></app-toolbar>
 <div class="container">
   <p-card [style]="{width: '1100px', height: '300px'}" styleClass="ui-card-shadow ui-card-">
-    <p-header>Venda</p-header>
+    <p-header>
+      <div class="row">
+        <div class="col-12 menu-card">
+          Venda
+        </div>
+      </div>
+    </p-header>
     <form>
 
       <div class="row">
@@ -34,9 +41,9 @@
 
         <div class="col-12 col-md-12">
           <div class="form-group">
-            <label for="funcionario">Vendedor</label>
+            <label for="vendedor">Vendedor</label>
             <p-autoComplete name="vendedor"
-                            inputId="vendedor"
+                            id="vendedor"
                             [dropdown]="true"
                             appendTo="body"
                             [forceSelection]="true">
@@ -47,14 +54,34 @@
     </form>
   </p-card>
 </div>
+
+<br>
+
 <div class="container">
-  <p-card [style]="{width: '100%', height: '300px'}" styleClass="ui-card-shadow ui-card-">
-    <p-header>Veículos
-      <button type="button" (click)="showDialog()" class="fa fa-2x fa-plus-circle">Adicionar Veículo</button>
+  <p-card [style]="{width: '1100px', height: '300px'}" styleClass="ui-card-shadow ui-card-">
+    <p-header>
+      <div class="row menu-card">
+        <div class="col-12">
+          <span>Veículos</span>
+          <button type="button"
+                  (click)="showDialog()"
+                  class="btn btn-link ripple btn-card">
+            <i class="fa fa-plus-circle"></i>
+            <span>Adicionar Veículo</span>
+          </button>
+        </div>
+      </div>
     </p-header>
   </p-card>
 </div>
-<p-dialog header="Veículo" [(visible)]="display" [modal]="true" [responsive]="true" [width]="1000" [minWidth]="500" [minY]="70"
+
+<p-dialog header="Veículo"
+          [(visible)]="display"
+          [modal]="true"
+          [responsive]="true"
+          [width]="1000"
+          [minWidth]="500"
+          [minY]="70"
           [baseZIndex]="10000">
 
   <div class="row">
@@ -64,8 +91,8 @@
         <label for="veiculo">Veículo</label>
         <p-autoComplete name="veiculo"
                         inputId="veiculo"
-                        [dropdown]="true"
                         appendTo="body"
+                        [dropdown]="true"
                         [forceSelection]="true">
         </p-autoComplete>
       </div>
@@ -82,7 +109,8 @@
                id="qtde"
                type="number"
                pTooltip="Informe a Quantidade"
-               tooltipPosition="top">
+               tooltipPosition="top"
+               class="form-control">
       </div>
     </div>
 
@@ -93,7 +121,8 @@
                id="vlrUnitario"
                type="text"
                pTooltip="Informe o Valor Unitário"
-               tooltipPosition="top">
+               tooltipPosition="top"
+               class="form-control">
       </div>
     </div>
 
@@ -104,7 +133,8 @@
                id="desconto"
                type="number"
                pTooltip="Informe o Desconto"
-               tooltipPosition="top">
+               tooltipPosition="top"
+               class="form-control">
       </div>
     </div>
 
@@ -114,6 +144,7 @@
         <input name="vlrTotal"
                id="vlrTotal"
                type="text"
+               class="form-control"
                [disabled]="true">
       </div>
     </div>
@@ -122,8 +153,8 @@
 
 
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes">Salvar</button>
-    <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No" class="ui-button-secondary">Fechar</button>
+    <button pButton type="button" label="Inserir" icon="pi pi-check" style="margin-right: .25em"></button>
+    <button pButton type="button" label="Fechar" icon="pi pi-times" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
 

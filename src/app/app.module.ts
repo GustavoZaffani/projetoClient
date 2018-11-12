@@ -7,8 +7,9 @@ import {ToolbarrModule} from './toolbar/toolbar.module';
 import {CarroModule} from './carro/carro.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HomeModule} from './home/home.module';
-import { VendaListComponent } from './venda/venda.list.component';
 import {VendaModule} from './venda/venda.module';
+import {PessoaModule} from './pessoa/pessoa.module';
+import {AppRoutingModule} from './app.routing.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import {VendaModule} from './venda/venda.module';
     ToolbarrModule,
     CarroModule,
     HomeModule,
-    VendaModule
+    VendaModule,
+    PessoaModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

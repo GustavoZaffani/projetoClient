@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {CarroFormComponent} from './carro.form.component';
 import {CarroListComponent} from './carro.list.component';
 import {CardModule} from 'primeng/card';
-import {CalendarModule, InputMaskModule, TooltipModule} from 'primeng/primeng';
+import {ButtonModule, CalendarModule, InputMaskModule, TooltipModule} from 'primeng/primeng';
 import {ToolbarrModule} from '../toolbar/toolbar.module';
 
 @NgModule({
@@ -12,7 +12,9 @@ import {ToolbarrModule} from '../toolbar/toolbar.module';
     CardModule,
     CalendarModule,
     InputMaskModule,
-    TooltipModule
+    TooltipModule,
+    ButtonModule,
+    ToolbarrModule
   ],
   declarations: [
     CarroFormComponent,
