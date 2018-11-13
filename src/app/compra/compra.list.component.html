@@ -5,11 +5,11 @@
 
     <p-header>
       <div class="col-12 menu-card">
-        <span>Lista de Vendas</span>
+        <span>Lista de Compras</span>
         <button type="button"
                 class="btn btn-link btn-card">
-          <i class="fa fa-2x fa-plus-circle"></i>
-          <a routerLink="/vendas/form" routerLinkActive="active-link" href="vendas/form" style="padding-left: 10px">Nova Venda</a>
+          <i class="fa fa-plus-circle"></i>
+          <a routerLink="/compras/form" routerLinkActive="active-link" href="compras/form">Nova Compra</a>
         </button>
       </div>
     </p-header>
@@ -18,13 +18,13 @@
       <ng-template pTemplate="header">
         <tr>
           <th>Código</th>
-          <th>Cliente</th>
-          <th>Vendedor</th>
+          <th>Tipo</th>
+          <th>Marca</th>
           <th>Modelo</th>
-          <th>Veículo</th>
-          <th>Quantidade</th>
+          <th>Ano de Fabricação</th>
+          <th>Preço de Custo</th>
           <th>Preço de Venda</th>
-          <th>Total</th>
+          <th>Qtde em Estoque</th>
         </tr>
       </ng-template>
 

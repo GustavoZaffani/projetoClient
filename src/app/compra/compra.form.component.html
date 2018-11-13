@@ -1,11 +1,10 @@
 <app-toolbar></app-toolbar>
+<br>
 <div class="container">
-  <p-card [style]="{width: '1100px', height: '320px'}" styleClass="ui-card-shadow ui-card-">
+  <p-card [style]="{width: '1100px', height: '330px'}" styleClass="ui-card-shadow ui-card-">
     <p-header>
-      <div class="row">
-        <div class="menu-card col-12">
-          Veículo
-        </div>
+      <div class="col-12 menu-card">
+        Veículo
       </div>
     </p-header>
     <form>
@@ -110,7 +109,7 @@
                     tooltipPosition="top">
               <option>Selecione o Tipo</option>
               <option value="n">Novo</option>
-              <option value="sn">Semi-Novo</option>
+              <option value="s">Semi-Novo</option>
             </select>
           </div>
         </div>
@@ -157,16 +156,14 @@
 <div class="container">
   <p-card [style]="{body:'' ,width: '1100px', height: '310px'}" styleClass="ui-card-shadow ui-card-">
     <p-header>
-      <div class="row">
-        <div class="col-12 menu-card">
-          Detalhes
-        </div>
+      <div class="col-12 menu-card">
+        Detalhes
       </div>
     </p-header>
     <form>
 
       <div class="row">
-        <div class="col-3 col-md-3 col-xl-2">
+        <div class="col-2 col-md-2 col-xl-2">
           <div class="form-group">
             <label for="placa">Placa</label>
             <p-inputMask mask="AAA-1111"
@@ -181,7 +178,20 @@
           </div>
         </div>
 
-        <div class="col-3 col-md-3">
+        <div class="col-2 col-xl-2">
+          <div class="form-group">
+            <label for="dtCompra">Data da Compra</label>
+            <p-calendar name="dtCompra"
+                        id="dtCompra"
+                        pTooltip="Informe a Data da Compra"
+                        tooltipPosition="top"
+                        dataType="string"
+                        dateFormat="dd/mm/yy">
+            </p-calendar>
+          </div>
+        </div>
+
+        <div class="col-4">
           <div class="form-group">
             <label for="km">Kilometragem</label>
             <input name="km"
@@ -193,7 +203,7 @@
           </div>
         </div>
 
-        <div class="col-3 col-md-3">
+        <div class="col-4">
           <div class="form-group">
             <label>Origem</label>
             <input name="origem"
@@ -206,18 +216,6 @@
           </div>
         </div>
 
-        <div class="col-3 col-xl-3">
-          <div class="form-group">
-            <label for="dtCompra">Data da Compra</label>
-            <p-calendar name="dtCompra"
-                        id="dtCompra"
-                        pTooltip="Informe a Data da Compra"
-                        tooltipPosition="top"
-                        dataType="string"
-                        dateFormat="dd/mm/yy">
-            </p-calendar>
-          </div>
-        </div>
       </div>
 
       <div class="row">
@@ -255,13 +253,26 @@
                    [disabled]="true">
           </div>
         </div>
+
+        <div class="col-3">
+          <div class="form-group">
+            <label for="qtde">Quantidade</label>
+            <input name="qtde"
+                   id="qtde"
+                   type="number"
+                   class="form-control"
+                   pTooltip="Informe a Quantidade Adquirida"
+                   tooltipPosition="top">
+          </div>
+        </div>
       </div>
 
     </form>
     <p-footer>
       <div class="row borda-superior"></div>
-      <button pButton type="button" label="Salvar" icon="pi pi-check" style="margin-right: .25em"></button>
-      <button pButton type="button" label="Fechar" icon="pi pi-times" class="ui-button-secondary"></button>
+      <button pButton type="button" label="Salvar" icon="pi pi-check" style="margin-right: .25em" (click)="salvar()"></button>
+      <button pButton type="button" label="Voltar" icon="pi pi-times" class="ui-button-secondary" (click)="voltar()"></button>
     </p-footer>
   </p-card>
 </div>
+

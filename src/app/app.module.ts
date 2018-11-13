@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {SidenavModule} from './sidenav/sidenav.module';
 import {ToolbarrModule} from './toolbar/toolbar.module';
-import {CarroModule} from './carro/carro.module';
+import {CompraModule} from './compra/compra.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HomeModule} from './home/home.module';
 import {VendaModule} from './venda/venda.module';
@@ -20,7 +20,7 @@ import {AppRoutingModule} from './app.routing.module';
     BrowserAnimationsModule,
     SidenavModule,
     ToolbarrModule,
-    CarroModule,
+    CompraModule,
     HomeModule,
     VendaModule,
     PessoaModule,

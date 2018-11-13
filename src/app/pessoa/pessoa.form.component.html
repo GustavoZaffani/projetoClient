@@ -1,13 +1,14 @@
 <app-toolbar></app-toolbar>
+<br>
 <div class="container">
   <p-card [style]="{width: '1100px', height: '630px'}" styleClass="ui-card-shadow ui-card-">
+
     <p-header>
-      <div class="row">
-        <div class="col-12 menu-card">
-          Pessoa
-        </div>
+      <div class="col-12 menu-card">
+        Pessoa
       </div>
     </p-header>
+
     <form>
       <div class="row">
 
@@ -104,7 +105,7 @@
       </div>
       <div class="row">
 
-        <div class="col-3">
+        <div class="col-4">
           <div class="form-group">
             <label for="cpf">CPF/CNPJ</label>
             <input name="cpf"
@@ -116,24 +117,24 @@
           </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-4">
           <div class="form-group">
             <label for="rg">RG</label>
             <input name="rg"
                    id="rg"
-                   type="text"
+                   type="number"
                    pTooltip="Informe o RG"
                    tooltipPosition="top"
                    class="form-control">
           </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-4">
           <div class="form-group">
             <label for="ie">Inscrição Estadual</label>
             <input name="ie"
                    id="ie"
-                   type="text"
+                   type="number"
                    pTooltip="Informe a IE"
                    tooltipPosition="top"
                    class="form-control">
@@ -150,6 +151,7 @@
             <p-inputMask name="cep"
                          id="cep"
                          mask="00.000-000"
+                         [unmask]="true"
                          placeholder="00.000-000"
                          pInputText
                          pTooltip="Informe o CEP"
@@ -187,7 +189,7 @@
             <label for="numero">Número</label>
             <input name="numero"
                    id="numero"
-                   type="text"
+                   type="number"
                    pTooltip="Informe o Número"
                    tooltipPosition="top"
                    class="form-control">
@@ -236,39 +238,40 @@
 
       <div class="row">
 
-        <div class="col-3">
+        <div class="col-2">
           <div class="form-group">
             <label for="celular">Tel. Celular</label>
-            <p-inputMask id="celular"
-                         name="celular"
+            <p-inputMask name="celular"
+                         id="celular"
                          mask="(99) 99999-9999"
                          placeholder="(99) 99999-9999"
+                         pInputText
                          pTooltip="Informe o Tel. Celular"
                          tooltipPosition="top">
             </p-inputMask>
-
           </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-2">
           <div class="form-group">
             <label for="telefone">Tel. Residencial</label>
-            <p-inputMask id="telefone"
-                         name="telefone"
+            <p-inputMask name="telefone"
+                         id="telefone"
                          mask="(99) 9999-9999"
                          placeholder="(99) 9999-9999"
+                         pInputText
                          pTooltip="Informe o Tel. Residencial"
                          tooltipPosition="top">
             </p-inputMask>
           </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-8">
           <div class="form-group">
             <label for="email">Email</label>
             <input name="email"
                    id="email"
-                   type="text"
+                   type="email"
                    pTooltip="Informe o Email"
                    tooltipPosition="top"
                    class="form-control">
@@ -276,22 +279,24 @@
         </div>
 
       </div>
-    <p-footer>
-      <div class="row borda-superior"></div>
-      <button pButton
-              type="button"
-              label="Salvar"
-              icon="pi pi-check"
-              style="margin-right: .25em">
-      </button>
-      <button pButton
-              type="button"
-              label="Fechar"
-              icon="pi pi-times"
-              class="ui ui-button-secondary"
-              style="margin-right: .25em">
-      </button>
-    </p-footer>
+      <p-footer>
+        <div class="row borda-superior"></div>
+        <button pButton
+                type="submit"
+                label="Salvar"
+                icon="pi pi-check"
+                (click)="salvar()"
+                style="margin-right: .25em">
+        </button>
+        <button pButton
+                type="button"
+                label="Voltar"
+                icon="pi pi-times"
+                class="ui ui-button-secondary"
+                (click)="voltar()"
+                style="margin-right: .25em">
+        </button>
+      </p-footer>
     </form>
   </p-card>
 </div>

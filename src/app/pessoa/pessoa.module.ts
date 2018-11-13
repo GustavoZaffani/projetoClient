@@ -5,6 +5,9 @@ import {AutoCompleteModule, ButtonModule, InputMaskModule, TooltipModule} from '
 import {PessoaFormComponent} from './pessoa.form.component';
 import {PessoaListComponent} from './pessoa.list.component';
 import {ToolbarrModule} from '../toolbar/toolbar.module';
+import {TableModule} from 'primeng/table';
+import {PessoaService} from './pessoa.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule ({
   imports: [
@@ -14,7 +17,9 @@ import {ToolbarrModule} from '../toolbar/toolbar.module';
     ButtonModule,
     InputMaskModule,
     AutoCompleteModule,
-    ToolbarrModule
+    ToolbarrModule,
+    TableModule,
+    HttpClientModule
   ],
   declarations: [
     PessoaFormComponent,
@@ -23,11 +28,10 @@ import {ToolbarrModule} from '../toolbar/toolbar.module';
   exports: [
     PessoaFormComponent,
     PessoaListComponent
+  ],
+  providers: [
+    PessoaService
   ]
 })
-
-
-
 export class PessoaModule {
-
 }

@@ -1,11 +1,10 @@
 <app-toolbar></app-toolbar>
+<br>
 <div class="container">
   <p-card [style]="{width: '1100px', height: '300px'}" styleClass="ui-card-shadow ui-card-">
     <p-header>
-      <div class="row">
-        <div class="col-12 menu-card">
-          Venda
-        </div>
+      <div class="col-12 menu-card">
+        Venda
       </div>
     </p-header>
     <form>
@@ -30,6 +29,7 @@
                             inputId="cliente"
                             [dropdown]="true"
                             appendTo="body"
+                            class="teste"
                             [forceSelection]="true">
             </p-autoComplete>
           </div>
@@ -39,11 +39,12 @@
 
       <div class="row">
 
-        <div class="col-12 col-md-12">
+        <div class="col-12">
           <div class="form-group">
             <label for="vendedor">Vendedor</label>
             <p-autoComplete name="vendedor"
                             id="vendedor"
+                            class="teste"
                             [dropdown]="true"
                             appendTo="body"
                             [forceSelection]="true">
@@ -60,18 +61,33 @@
 <div class="container">
   <p-card [style]="{width: '1100px', height: '300px'}" styleClass="ui-card-shadow ui-card-">
     <p-header>
-      <div class="row menu-card">
-        <div class="col-12">
-          <span>Veículos</span>
-          <button type="button"
-                  (click)="showDialog()"
-                  class="btn btn-link ripple btn-card">
-            <i class="fa fa-plus-circle"></i>
-            <span>Adicionar Veículo</span>
-          </button>
-        </div>
+      <div class="col-12 menu-card">
+        <span>Veículos</span>
+        <button type="button"
+                (click)="showDialog()"
+                class="btn btn-link ripple btn-card">
+          <i class="fa fa-plus-circle"></i>
+          <span>Adicionar Veículo</span>
+        </button>
       </div>
     </p-header>
+    <p-footer>
+      <div class="row borda-superior">
+        <button pButton
+                type="button"
+                label="Finalizar Venda"
+                icon="pi pi-check"
+                style="margin-right: .25em">
+        </button>
+        <button pButton
+                type="button"
+                label="Voltar"
+                icon="pi pi-times"
+                class="ui ui-button-secondary"
+                style="margin-right: .25em; width: 143px">
+        </button>
+      </div>
+    </p-footer>
   </p-card>
 </div>
 
@@ -154,7 +170,7 @@
 
   <p-footer>
     <button pButton type="button" label="Inserir" icon="pi pi-check" style="margin-right: .25em"></button>
-    <button pButton type="button" label="Fechar" icon="pi pi-times" class="ui-button-secondary"></button>
+    <button pButton type="button" label="Voltar" icon="pi pi-times" class="ui-button-secondary" (click)="voltar()"></button>
   </p-footer>
 </p-dialog>
 

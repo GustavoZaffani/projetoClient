@@ -1,10 +1,12 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {CarroFormComponent} from './carro.form.component';
-import {CarroListComponent} from './carro.list.component';
+import {CompraFormComponent} from './compra.form.component';
+import {CompraListComponent} from './compra.list.component';
 import {CardModule} from 'primeng/card';
 import {ButtonModule, CalendarModule, InputMaskModule, TooltipModule} from 'primeng/primeng';
 import {ToolbarrModule} from '../toolbar/toolbar.module';
+import {TableModule} from 'primeng/table';
+import {CompraService} from './compra.service';
 
 @NgModule({
   imports: [
@@ -14,15 +16,19 @@ import {ToolbarrModule} from '../toolbar/toolbar.module';
     InputMaskModule,
     TooltipModule,
     ButtonModule,
-    ToolbarrModule
+    ToolbarrModule,
+    TableModule
   ],
   declarations: [
-    CarroFormComponent,
-    CarroListComponent
+    CompraFormComponent,
+    CompraListComponent
   ],
   exports: [
-    CarroFormComponent,
-    CarroListComponent
+    CompraFormComponent,
+    CompraListComponent
+  ],
+  providers: [
+    CompraService
   ]
 })
-export class CarroModule {}
+export class CompraModule {}

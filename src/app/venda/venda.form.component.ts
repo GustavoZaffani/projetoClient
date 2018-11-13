@@ -16,8 +16,12 @@ export class VendaFormComponent implements OnInit {
     this.display = true;
   }
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
+  }
+
+  voltar(){
+    this.route.navigate(['/vendas']);
   }
 }

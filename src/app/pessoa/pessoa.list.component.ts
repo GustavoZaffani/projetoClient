@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {PessoaService} from './pessoa.service';
+import {Pessoa} from './pessoa';
 
 @Component ({
 
@@ -8,4 +10,15 @@ import {Component} from '@angular/core';
 
 })
 
-export class PessoaListComponent {}
+export class PessoaListComponent implements OnInit{
+
+  pessoa: Pessoa;
+  pessoas: Pessoa[];
+
+  constructor(private service: PessoaService) {}
+
+  ngOnInit(): void {
+    this.service.findAll()
+      .subscribe(e => this.pessoas = e);
+  }
+}

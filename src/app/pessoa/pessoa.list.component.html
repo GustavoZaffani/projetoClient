@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<app-toolbar></app-toolbar>
+<br>
+<div class="container">
+  <p-card [style]="{width: '1100px', height: '630px'}" styleClass="ui-card-shadow ui-card-">
 
-</body>
-</html>
+    <p-header>
+        <div class="col-12 menu-card">
+          <span>Lista de Pessoas</span>
+          <button type="button"
+                  class="btn btn-link ripple btn-card">
+            <i class="fa fa-plus-circle"></i>
+            <a routerLink="/pessoas/form" href="pessoas/form" routerLinkActive="active-link">Novo Cadastro</a>
+          </button>
+        </div>
+    </p-header>
+
+    <p-table>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>CPF/CNPJ</th>
+          <th>Categoria</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body">
+        <tr>
+
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </p-card>
+</div>

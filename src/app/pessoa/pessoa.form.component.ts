@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {PessoaService} from './pessoa.service';
+import {Pessoa} from './pessoa';
 
 @Component({
   selector: 'app-pessoa',
@@ -7,11 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PessoaFormComponent implements OnInit {
 
-  val1: string;
-  val2: string;
-  constructor() { }
+  pessoa: Pessoa;
+
+  constructor(private route: Router,
+              private service: PessoaService) {}
 
   ngOnInit() {
+  }
+
+  salvar() {
+    this.service.save(this.pessoa)
+      .subscribe(e => {
+        this.pessoa = e;
+      });
+  }
+
+  voltar(){
+    this.route.navigate(['/pessoas']);
   }
 
 }

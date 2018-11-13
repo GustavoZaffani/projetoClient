@@ -5,6 +5,7 @@ import {VendaFormComponent} from './venda.form.component';
 import {CardModule} from 'primeng/card';
 import {AutoCompleteModule, ButtonModule, DialogModule, TooltipModule} from 'primeng/primeng';
 import {ToolbarrModule} from '../toolbar/toolbar.module';
+import {TableModule} from 'primeng/table';
 
 @NgModule ({
   imports: [
@@ -14,7 +15,8 @@ import {ToolbarrModule} from '../toolbar/toolbar.module';
     AutoCompleteModule,
     DialogModule,
     ButtonModule,
-    ToolbarrModule
+    ToolbarrModule,
+    TableModule
   ],
   declarations: [
     VendaListComponent,
