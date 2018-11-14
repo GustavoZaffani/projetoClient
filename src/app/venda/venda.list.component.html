@@ -1,7 +1,7 @@
 <app-toolbar></app-toolbar>
 <br>
 <div class="container">
-  <p-card [style]="{width: '1100px', height: '630px'}" styleClass="ui-card-shadow ui-card-">
+  <p-card [style]="{width: '1100px', height: '700px'}" styleClass="ui-card-shadow ui-card-">
 
     <p-header>
       <div class="col-12 menu-card">
@@ -14,7 +14,7 @@
       </div>
     </p-header>
 
-    <p-table>
+    <p-table [paginator]="true" [rows]="10  ">
       <ng-template pTemplate="header">
         <tr>
           <th>Código</th>

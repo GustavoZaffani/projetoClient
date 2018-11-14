@@ -7,17 +7,21 @@ import {ButtonModule, CalendarModule, InputMaskModule, TooltipModule} from 'prim
 import {ToolbarrModule} from '../toolbar/toolbar.module';
 import {TableModule} from 'primeng/table';
 import {CompraService} from './compra.service';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
-@NgModule({
+@NgModule ({
   imports: [
     CommonModule,
     CardModule,
+    FormsModule,
     CalendarModule,
     InputMaskModule,
     TooltipModule,
     ButtonModule,
     ToolbarrModule,
-    TableModule
+    TableModule,
+    HttpClientModule
   ],
   declarations: [
     CompraFormComponent,

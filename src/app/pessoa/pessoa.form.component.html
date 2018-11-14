@@ -19,17 +19,23 @@
                    id="id"
                    type="text"
                    class="form-control"
+                   [(ngModel)]="pessoa.id"
                    [disabled]="true">
+            <div class="invalid-feedback">
+              OPAA
+            </div>
           </div>
         </div>
 
         <div class="col-9 col-md-9">
           <div class="form-group">
             <label for="nome">Nome</label>
+            <span class="campo-obrigatorio">*</span>
             <input name="nome"
                    id="nome"
                    type="text"
                    class="form-control"
+                   [(ngModel)]="pessoa.nome"
                    pTooltip="Informe o Nome"
                    tooltipPosition="top">
           </div>
@@ -45,8 +51,8 @@
                     id="sexo"
                     pTooltip="Selecione o Sexo"
                     tooltipPosition="top"
+                    [(ngModel)]="pessoa.sexo"
                     class="form-control">
-              <option>Selecione</option>
               <option value="m">Masculino</option>
               <option value="f">Feminino</option>
             </select>
@@ -60,8 +66,8 @@
                     id="civil"
                     pTooltip="Selecione o Estado Civil"
                     tooltipPosition="top"
+                    [(ngModel)]="pessoa.estadoCivil"
                     class="form-control">
-              <option>Selecione</option>
               <option value="s">Solteiro(a)</option>
               <option value="c">Casado(a)</option>
               <option value="d">Divorciado(a)</option>
@@ -74,12 +80,13 @@
         <div class="col-3 col-md-3">
           <div class="form-group">
             <label for="categoria">Categoria</label>
+            <span class="campo-obrigatorio">*</span>
             <select name="categoria"
                     id="categoria"
                     pTooltip="Selecione a Categoria"
                     tooltipPosition="top"
+                    [(ngModel)]="pessoa.categoria"
                     class="form-control">
-              <option>Selecione</option>
               <option value="c">Cliente</option>
               <option value="v">Vendedor</option>
               <option value="f">Fornecedor</option>
@@ -90,12 +97,13 @@
         <div class="col-3 col-md-3">
           <div class="form-group">
             <label for="tipo">Tipo de Pessoa</label>
+            <span class="campo-obrigatorio">*</span>
             <select name="tipo"
                     id="tipo"
                     pTooltip="Selecione o Tipo da Pessoa"
                     tooltipPosition="top"
+                    [(ngModel)]="pessoa.tipoPessoa"
                     class="form-control">
-              <option>Selecione</option>
               <option value="f">Física</option>
               <option value="j">Jurídica</option>
             </select>
@@ -108,9 +116,11 @@
         <div class="col-4">
           <div class="form-group">
             <label for="cpf">CPF/CNPJ</label>
+            <span class="campo-obrigatorio">*</span>
             <input name="cpf"
                    id="cpf"
                    type="number"
+                   [(ngModel)]="pessoa.cpfCnpj"
                    pTooltip="Informe o CPF/CNPJ"
                    tooltipPosition="top"
                    class="form-control">
@@ -123,6 +133,7 @@
             <input name="rg"
                    id="rg"
                    type="number"
+                   [(ngModel)]="pessoa.rg"
                    pTooltip="Informe o RG"
                    tooltipPosition="top"
                    class="form-control">
@@ -135,6 +146,7 @@
             <input name="ie"
                    id="ie"
                    type="number"
+                   [(ngModel)]="pessoa.ie"
                    pTooltip="Informe a IE"
                    tooltipPosition="top"
                    class="form-control">
@@ -148,11 +160,12 @@
         <div class="col-2">
           <div class="form-group">
             <label for="cep">CEP</label>
+            <span class="campo-obrigatorio">*</span>
             <p-inputMask name="cep"
                          id="cep"
-                         mask="00.000-000"
-                         [unmask]="true"
-                         placeholder="00.000-000"
+                         mask="99999-999"
+                         placeholder="99999-999"
+                         [(ngModel)]="pessoa.cep"
                          pInputText
                          pTooltip="Informe o CEP"
                          tooltipPosition="top">
@@ -163,9 +176,11 @@
         <div class="col-5">
           <div class="form-group">
             <label for="endereco">Endereço</label>
+            <span class="campo-obrigatorio">*</span>
             <input name="endereco"
                    id="endereco"
                    type="text"
+                   [(ngModel)]="pessoa.endereco"
                    pTooltip="Informe o Endereço"
                    tooltipPosition="top"
                    class="form-control">
@@ -178,6 +193,7 @@
             <input name="complemento"
                    id="complemento"
                    type="text"
+                   [(ngModel)]="pessoa.complemento"
                    pTooltip="Informe o Complemento"
                    tooltipPosition="top"
                    class="form-control">
@@ -190,6 +206,7 @@
             <input name="numero"
                    id="numero"
                    type="number"
+                   [(ngModel)]="pessoa.nro"
                    pTooltip="Informe o Número"
                    tooltipPosition="top"
                    class="form-control">
@@ -202,9 +219,11 @@
         <div class="col-5">
           <div class="form-group">
             <label for="cidade">Cidade</label>
+            <span class="campo-obrigatorio">*</span>
             <input name="cidade"
                    id="cidade"
                    type="text"
+                   [(ngModel)]="pessoa.cidade"
                    pTooltip="Informe a Cidade"
                    tooltipPosition="top"
                    class="form-control">
@@ -214,9 +233,11 @@
         <div class="col-4">
           <div class="form-group">
             <label for="bairro">Bairro</label>
+            <span class="campo-obrigatorio">*</span>
             <input name="bairro"
                    id="bairro"
                    type="text"
+                   [(ngModel)]="pessoa.bairro"
                    pTooltip="Informe o Bairro"
                    tooltipPosition="top"
                    class="form-control">
@@ -226,12 +247,20 @@
         <div class="col-3">
           <div class="form-group">
             <label for="uf">UF</label>
-            <p-autoComplete name="uf"
+            <span class="campo-obrigatorio">*</span>
+            <input name="uf"
+                   id="uf"
+                   type="text"
+                   [(ngModel)]="pessoa.uf"
+                   pTooltip="Informe o Bairro"
+                   tooltipPosition="top"
+                   class="form-control">
+            <!--<p-autoComplete name="uf"
                             id="uf"
                             appendTo="body"
                             [dropdown]="true"
                             [forceSelection]="true">
-            </p-autoComplete>
+            </p-autoComplete>-->
           </div>
         </div>
       </div>
@@ -241,10 +270,12 @@
         <div class="col-2">
           <div class="form-group">
             <label for="celular">Tel. Celular</label>
+            <span class="campo-obrigatorio">*</span>
             <p-inputMask name="celular"
                          id="celular"
                          mask="(99) 99999-9999"
                          placeholder="(99) 99999-9999"
+                         [(ngModel)]="pessoa.telCel"
                          pInputText
                          pTooltip="Informe o Tel. Celular"
                          tooltipPosition="top">
@@ -259,6 +290,7 @@
                          id="telefone"
                          mask="(99) 9999-9999"
                          placeholder="(99) 9999-9999"
+                         [(ngModel)]="pessoa.telRes"
                          pInputText
                          pTooltip="Informe o Tel. Residencial"
                          tooltipPosition="top">
@@ -272,6 +304,7 @@
             <input name="email"
                    id="email"
                    type="email"
+                   [(ngModel)]="pessoa.email"
                    pTooltip="Informe o Email"
                    tooltipPosition="top"
                    class="form-control">
@@ -282,10 +315,10 @@
       <p-footer>
         <div class="row borda-superior"></div>
         <button pButton
-                type="submit"
+                type="button"
+                (click)="salvar()"
                 label="Salvar"
                 icon="pi pi-check"
-                (click)="salvar()"
                 style="margin-right: .25em">
         </button>
         <button pButton

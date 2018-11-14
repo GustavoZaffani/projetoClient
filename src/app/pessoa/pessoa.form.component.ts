@@ -16,6 +16,8 @@ export class PessoaFormComponent implements OnInit {
               private service: PessoaService) {}
 
   ngOnInit() {
+    //TODO depois tem que carregar do banco se tiver parametro na url
+    this.pessoa = new Pessoa();
   }
 
   salvar() {
@@ -25,7 +27,7 @@ export class PessoaFormComponent implements OnInit {
       });
   }
 
-  voltar(){
+  voltar() {
     this.route.navigate(['/pessoas']);
   }
 

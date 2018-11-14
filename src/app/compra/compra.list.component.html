@@ -1,7 +1,7 @@
 <app-toolbar></app-toolbar>
 <br>
 <div class="container">
-  <p-card [style]="{width: '1100px', height: '630px'}" styleClass="ui-card-shadow ui-card-">
+  <p-card [style]="{width: '1100px', height: '700px'}" styleClass="ui-card-shadow ui-card-">
 
     <p-header>
       <div class="col-12 menu-card">
@@ -12,9 +12,14 @@
           <a routerLink="/compras/form" routerLinkActive="active-link" href="compras/form">Nova Compra</a>
         </button>
       </div>
+      <!--TODO Verificar classe "campo pesquisa"-->
+      <div class="col-12 campo-pesquisa">
+        <!--<i class="fa fa-2x fa-search"></i>-->
+        <input class="form-control">
+      </div>
     </p-header>
 
-    <p-table>
+    <p-table [value]="compras" [paginator]="true" [rows]="11">
       <ng-template pTemplate="header">
         <tr>
           <th>Código</th>
@@ -25,12 +30,32 @@
           <th>Preço de Custo</th>
           <th>Preço de Venda</th>
           <th>Qtde em Estoque</th>
+          <th [width]="100">Opções</th>
         </tr>
       </ng-template>
 
-      <ng-template pTemplate="body">
+      <ng-template pTemplate="body" let-compra>
         <tr>
+          <td>{{compra.id}}</td>
+          <td>{{compra.tipo}}</td>
+          <td>{{compra.marca}}</td>
+          <td>{{compra.modelo}}</td>
+          <td>{{compra.anoFabricacao}}</td>
+          <td>{{compra.precoCusto}}</td>
+          <td>{{compra.precoVenda}}</td>
+          <td>{{compra.qtde}}</td>
+          <td>
+            <button pTooltip="Editar"
+                    tooltipPosition="top">
+              <i class="fa fa-edit"></i>
+            </button>
 
+            <button pTooltip="Editar"
+                    tooltipPosition="top">
+              <i class="fa fa-trash"></i>
+            </button>
+
+          </td>
         </tr>
       </ng-template>
     </p-table>

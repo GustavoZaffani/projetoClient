@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Compra} from './compra';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class CompraService {
@@ -9,7 +10,7 @@ export class CompraService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://192.168.88.26:8085/compras';
+    this.url = environment.api_url + 'compra';
   }
 
   findOne(id: number): Observable<Compra> {

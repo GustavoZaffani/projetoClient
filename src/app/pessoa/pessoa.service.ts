@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Pessoa} from './pessoa';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class PessoaService {
@@ -9,7 +10,7 @@ export class PessoaService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:8080/pessoa';
+    this.url = environment.api_url + 'pessoa';
   }
 
   findOne(id: number): Observable<Pessoa> {
@@ -21,7 +22,7 @@ export class PessoaService {
   }
 
   save(pessoa: Pessoa): Observable<Pessoa> {
-    return this.http.post<Pessoa>(this.url, Pessoa);
+    return this.http.post<Pessoa>(this.url, pessoa);
   }
 
   excluir(pessoa: Pessoa): Observable<Pessoa[]> {

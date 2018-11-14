@@ -10,6 +10,7 @@ import {HomeModule} from './home/home.module';
 import {VendaModule} from './venda/venda.module';
 import {PessoaModule} from './pessoa/pessoa.module';
 import {AppRoutingModule} from './app.routing.module';
+import {ConfirmationService, ConfirmDialogModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -21,12 +22,15 @@ import {AppRoutingModule} from './app.routing.module';
     SidenavModule,
     ToolbarrModule,
     CompraModule,
+    ConfirmDialogModule,
     HomeModule,
     VendaModule,
     PessoaModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    ConfirmationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

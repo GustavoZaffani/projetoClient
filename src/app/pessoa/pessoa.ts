@@ -9,14 +9,14 @@ export class Pessoa {
   cpfCnpj: number;
   rg: number;
   ie: number;
-  cep: number;
+  cep: string;
   endereco: string;
   complemento: string;
   nro: number;
   cidade: string;
   bairro: string;
   uf: string;
-  telCel: number;
-  telRes: number;
+  telCel: string;
+  telRes: string;
   email: string;
 }

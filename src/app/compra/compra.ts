@@ -3,8 +3,8 @@ export class Compra {
   id: number;
   marca: string;
   modelo: string;
-  anoFabricacao: string;
-  anoModelo: string;
+  anoFabricacao: number;
+  anoModelo: number;
   cor: string;
   combustivel: string;
   tipo: string;

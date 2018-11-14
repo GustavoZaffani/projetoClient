@@ -32,3 +32,11 @@ body {
 .teste {
   padding-bottom: 1000px;
 }
+.campo-obrigatorio {
+  padding-left: 5px;
+}
+.campo-pesquisa {
+  border-color: unset !important;
+  border: none !important;
+  padding-top: 10px;
+}

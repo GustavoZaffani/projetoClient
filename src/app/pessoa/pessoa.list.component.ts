@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PessoaService} from './pessoa.service';
 import {Pessoa} from './pessoa';
+import {ConfirmationService} from 'primeng/api';
 
 @Component ({
 
@@ -10,15 +11,32 @@ import {Pessoa} from './pessoa';
 
 })
 
-export class PessoaListComponent implements OnInit{
+export class PessoaListComponent implements OnInit {
 
-  pessoa: Pessoa;
   pessoas: Pessoa[];
 
-  constructor(private service: PessoaService) {}
+  constructor(private service: PessoaService,
+              private confirmationService: ConfirmationService) {}
 
   ngOnInit(): void {
     this.service.findAll()
-      .subscribe(e => this.pessoas = e);
+      .subscribe(e => {
+        this.pessoas = e;
+      });
+  }
+  excluir(pessoa: Pessoa) {
+    this.confirmationService.confirm( {
+      message: 'Tem certeza que deseja excluir o registro?',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
+      accept: () => {
+        this.service.excluir(pessoa)
+          .subscribe(e => {
+            this.pessoas = e;
+          }, error => {
+            console.log(error);
+          });
+      }
+    });
   }
 }
