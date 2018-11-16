@@ -12,10 +12,12 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'compras', component: CompraListComponent},
   {path: 'compras/form', component: CompraFormComponent},
+  {path: 'compras/form/:id', component: CompraFormComponent},
   {path: 'vendas', component: VendaListComponent},
   {path: 'vendas/form', component: VendaFormComponent},
   {path: 'pessoas', component: PessoaListComponent},
-  {path: 'pessoas/form', component: PessoaFormComponent}
+  {path: 'pessoas/form', component: PessoaFormComponent},
+  {path: 'pessoas/form/:id', component: PessoaFormComponent}
 ];
 
 @NgModule({

@@ -12,39 +12,46 @@
             <a routerLink="/pessoas/form" href="pessoas/form" routerLinkActive="active-link">Novo Cadastro</a>
           </button>
         </div>
-        <!--TODO Verificar classe "campo pesquisa"-->
-        <div class="col-12 campo-pesquisa">
-          <!--<i class="fa fa-2x fa-search"></i>-->
-          <input class="form-control">
-        </div>
     </p-header>
 
-    <p-table [value]="pessoas" [paginator]="true" [rows]="11">
-      <ng-template pTemplate="header">
+    <p-table #dt [value]="pessoas" [paginator]="true" [rows]="11" [columns]="cols">
+
+      <ng-template pTemplate="caption">
+        <div>
+          <i class="fa fa-search"></i>
+          <input type="text"
+                 pInputText
+                 placeholder="Pesquisar"
+                 (input)="dt.filterGlobal($event.target.value, 'contains')"
+                 style="width: auto">
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header" let-columns>
         <tr>
-          <th>Código</th>
-          <th>Nome</th>
-          <th>CPF/CNPJ</th>
-          <th>Categoria</th>
-          <th [width]="100">Opções</th>
+          <th *ngFor="let col of columns">
+            {{col.header}}
+          </th>
+          <th width="100px">Opções</th>
         </tr>
       </ng-template>
 
-      <ng-template pTemplate="body" let-pessoa>
-        <tr>
-          <td>{{pessoa.id}}</td>
-          <td>{{pessoa.nome}}</td>
-          <td>{{pessoa.cpfCnpj}}</td>
-          <td>{{pessoa.categoria}}</td>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+          <td>{{rowData.id}}</td>
+          <td>{{rowData.nome}}</td>
+          <td>{{rowData.cpfCnpj}}</td>
+          <td>{{rowData.categoria}}</td>
           <td>
             <button pTooltip="Editar"
-                    tooltipPosition="top">
+                    tooltipPosition="top"
+                    (click)="editar(rowData.id)">
               <i class="fa fa-edit"></i>
             </button>
 
             <button pTooltip="Excluir"
                     tooltipPosition="top"
-                    (click)="excluir(pessoa)">
+                    (click)="excluir(rowData.pessoa)">
               <i class="fa fa-trash"></i>
             </button>
           </td>

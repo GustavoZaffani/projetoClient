@@ -57,7 +57,7 @@
             <label for="anoFab">Ano Fabricação</label>
             <span class="campo-obrigatorio">*</span>
             <input name="anoFab"
-                   type="text"
+                   type="number"
                    id="anoFab"
                    [(ngModel)]="compra.anoFabricacao"
                    pTooltip="Informe o Ano de Fabricação"
@@ -95,13 +95,14 @@
         <div class="col-3 col-md-3">
           <div class="form-group">
             <label for="combustivel">Combustível</label>
-            <select class="custom-select"
-                    [(ngModel)]="compra.combustivel"
+            <select id="combustivel"
+                    name="combustivel"
                     pTooltip="Selecione o tipo de Combustível"
                     tooltipPosition="top"
-                    id="combustivel">
+                    [(ngModel)]="compra.combustivel"
+                    class="form-control">
               <option value="f">Flex</option>
-              <option value="tf">Total Flex</option>
+              <option value="t">Total Flex</option>
               <option value="d">Diesel</option>
             </select>
           </div>
@@ -113,11 +114,12 @@
           <div class="form-group">
             <label for="tipo">Tipo</label>
             <span class="campo-obrigatorio">*</span>
-            <select class="custom-select"
-                    id="tipo"
-                    [(ngModel)]="compra.tipo"
+            <select id="tipo"
+                    name="tipo"
                     pTooltip="Selecione o Tipo"
-                    tooltipPosition="top">
+                    tooltipPosition="top"
+                    [(ngModel)]="compra.tipo"
+                    class="form-control">
               <option value="n">Novo</option>
               <option value="s">Semi-Novo</option>
             </select>
@@ -128,14 +130,16 @@
           <div class="form-group">
             <label for="categoria">Categoria</label>
             <span class="campo-obrigatorio">*</span>
-            <select class="custom-select"
-                    id="categoria"
+            <select id="categoria"
+                    name="categoria"
                     [(ngModel)]="compra.categoria"
                     pTooltip="Selecione a Categoria"
-                    tooltipPosition="top">
-              <option value="cr">Carro</option>
+                    tooltipPosition="top"
+                    pInputText
+                    class="form-control">
+              <option value="c">Carro</option>
               <option value="m">Moto</option>
-              <option value="ca">Caminhão</option>
+              <option value="t">Caminhão</option>
             </select>
           </div>
         </div>
@@ -178,15 +182,14 @@
         <div class="col-2 col-md-2 col-xl-2">
           <div class="form-group">
             <label for="placa">Placa</label>
-            <p-inputMask mask="AAA-1111"
-                         characterPattern="[А-Яа-я]"
-                         placeholder="99/99/9999"
-                         slotChar="AAA-1111"
+            <p-inputMask name="placa"
+                         id="placa"
+                         mask="aaa-9999"
+                         placeholder="ABC-1234"
                          [(ngModel)]="compra.placa"
                          pTooltip="Informe a Placa"
                          tooltipPosition="top"
-                         [disabled]="false"
-            pInputText>
+                         pInputText>
             </p-inputMask>
           </div>
         </div>

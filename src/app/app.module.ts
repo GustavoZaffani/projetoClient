@@ -10,7 +10,7 @@ import {HomeModule} from './home/home.module';
 import {VendaModule} from './venda/venda.module';
 import {PessoaModule} from './pessoa/pessoa.module';
 import {AppRoutingModule} from './app.routing.module';
-import {ConfirmationService, ConfirmDialogModule} from 'primeng/primeng';
+import {ConfirmationService, ConfirmDialogModule, GrowlModule, MessageService} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -26,10 +26,12 @@ import {ConfirmationService, ConfirmDialogModule} from 'primeng/primeng';
     HomeModule,
     VendaModule,
     PessoaModule,
-    AppRoutingModule
+    AppRoutingModule,
+    GrowlModule
   ],
   providers: [
-    ConfirmationService
+    ConfirmationService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

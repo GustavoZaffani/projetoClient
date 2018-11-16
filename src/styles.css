@@ -40,3 +40,12 @@ body {
   border: none !important;
   padding-top: 10px;
 }
+p-table th {
+  text-align: center;
+  color: #606067;
+  color: white !important;
+  background-color: #8e8e8e !important;
+}
+p-table td {
+  text-align: center;
+}

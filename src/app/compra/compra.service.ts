@@ -25,7 +25,7 @@ export class CompraService {
     return this.http.post<Compra>(this.url, compra);
   }
 
-  excluir(compra: Compra): Observable<Compra[]> {
-    return this.http.post<Compra[]>(this.url + '/excluir', compra);
+  excluir(id: number): Observable<void> {
+    return this.http.delete<void>(this.url + `/${id}`);
   }
 }

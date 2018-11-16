@@ -25,7 +25,7 @@ export class PessoaService {
     return this.http.post<Pessoa>(this.url, pessoa);
   }
 
-  excluir(pessoa: Pessoa): Observable<Pessoa[]> {
-    return this.http.post<Pessoa[]>(this.url + '/excluir', pessoa);
+  excluir(id: number): Observable<void> {
+    return this.http.delete<void>(this.url + `/${id}`);
   }
 }

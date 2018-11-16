@@ -5,56 +5,59 @@
 
     <p-header>
       <div class="col-12 menu-card">
-        <span>Lista de Compras</span>
+        <span>Lista de Carros</span>
         <button type="button"
                 class="btn btn-link btn-card">
           <i class="fa fa-plus-circle"></i>
           <a routerLink="/compras/form" routerLinkActive="active-link" href="compras/form">Nova Compra</a>
         </button>
       </div>
-      <!--TODO Verificar classe "campo pesquisa"-->
-      <div class="col-12 campo-pesquisa">
-        <!--<i class="fa fa-2x fa-search"></i>-->
-        <input class="form-control">
-      </div>
     </p-header>
 
-    <p-table [value]="compras" [paginator]="true" [rows]="11">
-      <ng-template pTemplate="header">
+    <p-table #dt [value]="compras" [paginator]="true" [rows]="11" [columns]="cols">
+
+      <ng-template pTemplate="caption">
+        <div>
+          <i class="fa fa-search"></i>
+          <input type="text"
+                 pInputText
+                 placeholder="Pesquisar"
+                 (input)="dt.filterGlobal($event.target.value, 'contains')"
+                 style="width: auto">
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header" let-columns>
         <tr>
-          <th>Código</th>
-          <th>Tipo</th>
-          <th>Marca</th>
-          <th>Modelo</th>
-          <th>Ano de Fabricação</th>
-          <th>Preço de Custo</th>
-          <th>Preço de Venda</th>
-          <th>Qtde em Estoque</th>
-          <th [width]="100">Opções</th>
+          <th *ngFor="let col of columns">
+            {{col.header}}
+          </th>
+          <th width="100px">Opções</th>
         </tr>
       </ng-template>
 
-      <ng-template pTemplate="body" let-compra>
-        <tr>
-          <td>{{compra.id}}</td>
-          <td>{{compra.tipo}}</td>
-          <td>{{compra.marca}}</td>
-          <td>{{compra.modelo}}</td>
-          <td>{{compra.anoFabricacao}}</td>
-          <td>{{compra.precoCusto}}</td>
-          <td>{{compra.precoVenda}}</td>
-          <td>{{compra.qtde}}</td>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+          <td>{{rowData.id}}</td>
+          <td>{{rowData.tipo}}</td>
+          <td>{{rowData.marca}}</td>
+          <td>{{rowData.modelo}}</td>
+          <td>{{rowData.anoFabricacao}}</td>
+          <td>{{rowData.precoCusto}}</td>
+          <td>{{rowData.precoVenda}}</td>
+          <td>{{rowData.qtde}}</td>
           <td>
             <button pTooltip="Editar"
-                    tooltipPosition="top">
+                    tooltipPosition="top"
+                    (click)="editar(rowData.id)">
               <i class="fa fa-edit"></i>
             </button>
 
-            <button pTooltip="Editar"
+            <button pTooltip="Excluir"
+                    (click)="excluir(rowData.compra)"
                     tooltipPosition="top">
               <i class="fa fa-trash"></i>
             </button>
-
           </td>
         </tr>
       </ng-template>
