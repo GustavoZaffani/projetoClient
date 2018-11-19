@@ -4,6 +4,7 @@ import {Compra} from './compra';
 import {CompraService} from './compra.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Pessoa} from '../pessoa/pessoa';
+import {PessoaService} from '../pessoa/pessoa.service';
 
 @Component({
   selector: 'app-compra-form',
@@ -13,12 +14,14 @@ import {Pessoa} from '../pessoa/pessoa';
 export class CompraFormComponent implements OnInit {
 
   compra: Compra;
+  fornecedorList: Pessoa[];
 
   constructor(private router: Router,
               private service: CompraService,
               private messageService: MessageService,
               private route: ActivatedRoute,
-              private confirmationService: ConfirmationService) { }
+              private confirmationService: ConfirmationService,
+              private pessoaService:  PessoaService) { }
 
   ngOnInit() {
     //TODO necessário quando trabalhar com a edição
@@ -61,7 +64,15 @@ export class CompraFormComponent implements OnInit {
         });
       });
   }
+
   calculoLucro(venda: number, custo: number) {
     this.compra.lucro = venda - custo;
+  }
+
+  findFornecedor($event) {
+    this.pessoaService.complete($event.query, 'F')
+      .subscribe(e => {
+        this.fornecedorList = e;
+      });
   }
 }

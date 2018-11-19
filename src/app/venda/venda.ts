@@ -1,7 +1,7 @@
 import {Pessoa} from '../pessoa/pessoa';
 import {Compra} from '../compra/compra';
 
-export class Vendas {
+export class Venda {
 
   id: number;
   cliente: Pessoa;

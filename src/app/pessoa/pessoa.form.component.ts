@@ -20,9 +20,9 @@ export class PessoaFormComponent implements OnInit {
               private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
-    //TODO depois tem que carregar do banco se tiver parametro na url
-    this.pessoa = new Pessoa();
+    // TODO depois tem que carregar do banco se tiver parametro na url
 
+    this.pessoa = new Pessoa();
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.service.findOne(params['id'])
@@ -57,19 +57,4 @@ export class PessoaFormComponent implements OnInit {
   voltar() {
     this.router.navigate(['/pessoas']);
   }
-
-  clear() {
-    this.pessoa = null;
-    /*this.pessoa.id = '';
-    this.pessoa.nome = '';
-    this.pessoa.sexo = '';
-    this.pessoa.estadoCivil = '';
-    this.pessoa.categoria = '';
-    this.pessoa.tipoPessoa = '';
-    this.pessoa.cpfCnpj = '';
-    this.pessoa.rg = '';
-    this.pessoa.ie = '';*/
-
-  }
-
 }

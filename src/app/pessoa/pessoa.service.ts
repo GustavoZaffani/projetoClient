@@ -28,4 +28,9 @@ export class PessoaService {
   excluir(id: number): Observable<void> {
     return this.http.delete<void>(this.url + `/${id}`);
   }
+
+  complete(query: string, categoria: string): Observable<Pessoa[]> {
+    const url = this.url + `/complete?query=${query}&categoria=${categoria}`;
+    return this.http.get<Pessoa[]>(url);
+  }
 }

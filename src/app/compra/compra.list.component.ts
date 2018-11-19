@@ -32,19 +32,18 @@ export class CompraListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.findAll()
-      .subscribe(e => this.compras = e);
+    this.atualizaTabela();
   }
 
-  excluir (compra: Compra) {
+  excluir (id: number) {
     this.confirmationService.confirm( {
       message: 'Tem certeza que deseja excluir esse registro?',
       acceptLabel: 'Sim',
       rejectLabel: 'Não',
       accept: () => {
-        this.service.excluir(compra.id)
+        this.service.excluir(id)
           .subscribe(e => {
-            this.compras.splice(this.compras.indexOf(compra), 1);
+            this.atualizaTabela();
             this.messageService.add({severity: 'success', detail: 'Registro excluído com sucesso!'});
           }, error => {
             console.log(error);
@@ -55,5 +54,10 @@ export class CompraListComponent implements OnInit {
 
   editar(id: number) {
     this.router.navigate(['compras/form', id]);
+  }
+
+  atualizaTabela() {
+    this.service.findAll()
+      .subscribe(e => this.compras = e);
   }
 }

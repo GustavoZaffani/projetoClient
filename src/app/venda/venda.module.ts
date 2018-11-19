@@ -6,6 +6,11 @@ import {CardModule} from 'primeng/card';
 import {AutoCompleteModule, ButtonModule, DialogModule, TooltipModule} from 'primeng/primeng';
 import {ToolbarrModule} from '../toolbar/toolbar.module';
 import {TableModule} from 'primeng/table';
+import {FormsModule} from '@angular/forms';
+import {VendaService} from './venda.service';
+import {PessoaService} from '../pessoa/pessoa.service';
+import {HttpClientModule} from '@angular/common/http';
+import {CompraService} from '../compra/compra.service';
 
 @NgModule ({
   imports: [
@@ -16,7 +21,9 @@ import {TableModule} from 'primeng/table';
     DialogModule,
     ButtonModule,
     ToolbarrModule,
-    TableModule
+    TableModule,
+    HttpClientModule,
+    FormsModule
   ],
   declarations: [
     VendaListComponent,
@@ -25,6 +32,11 @@ import {TableModule} from 'primeng/table';
   exports: [
     VendaListComponent,
     VendaFormComponent
+  ],
+  providers: [
+    VendaService,
+    PessoaService,
+    CompraService
   ]
 })
 

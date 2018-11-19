@@ -1,3 +1,5 @@
+import {Pessoa} from '../pessoa/pessoa';
+
 export class Compra {
 
   id: number;
@@ -18,4 +20,5 @@ export class Compra {
   precoVenda: number;
   lucro: number;
   qtde: number;
+  fornecedor: Pessoa;
 }

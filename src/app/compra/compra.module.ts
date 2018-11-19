@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {CompraFormComponent} from './compra.form.component';
 import {CompraListComponent} from './compra.list.component';
 import {CardModule} from 'primeng/card';
-import {ButtonModule, CalendarModule, InputMaskModule, TooltipModule} from 'primeng/primeng';
+import {AutoCompleteModule, ButtonModule, CalendarModule, InputMaskModule, TooltipModule} from 'primeng/primeng';
 import {ToolbarrModule} from '../toolbar/toolbar.module';
 import {TableModule} from 'primeng/table';
 import {CompraService} from './compra.service';
@@ -21,7 +21,8 @@ import {FormsModule} from '@angular/forms';
     ButtonModule,
     ToolbarrModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
+    AutoCompleteModule
   ],
   declarations: [
     CompraFormComponent,

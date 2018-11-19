@@ -31,21 +31,19 @@ export class PessoaListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.findAll()
-      .subscribe(e => {
-        this.pessoas = e;
-      });
+    this.atualizaTabela();
   }
 
-  excluir(pessoa: Pessoa) {
+  excluir(id: number) {
+
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir o registro?',
       acceptLabel: 'Sim',
       rejectLabel: 'Não',
       accept: () => {
-        this.service.excluir(pessoa.id)
+        this.service.excluir(id)
           .subscribe(e => {
-            this.pessoas.splice(this.pessoas.indexOf(pessoa), 1);
+            this.atualizaTabela();
             this.messageService.add({severity: 'success', detail: 'Registro excluído com sucesso!'});
           }, error => {
             console.log(error);
@@ -56,6 +54,13 @@ export class PessoaListComponent implements OnInit {
 
   editar(id: number) {
     this.router.navigate(['pessoas/form', id]);
+  }
+
+  atualizaTabela () {
+    this.service.findAll()
+      .subscribe(e => {
+        this.pessoas = e;
+      });
   }
 
 }

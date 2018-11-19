@@ -1,7 +1,7 @@
 <app-toolbar></app-toolbar>
 <br>
 <div class="container">
-  <p-card [style]="{width: '1100px', height: '330px'}" styleClass="ui-card-shadow ui-card-">
+  <p-card [style]="{width: auto, height: auto}" styleClass="ui-card-shadow ui-card-">
     <p-header>
       <div class="col-12 menu-card">
         Veículo
@@ -170,7 +170,7 @@
 <br>
 
 <div class="container">
-  <p-card [style]="{body:'' ,width: '1100px', height: '310px'}" styleClass="ui-card-shadow ui-card-">
+  <p-card [style]="{width: auto, height: auto}" styleClass="ui-card-shadow ui-card-">
     <p-header>
       <div class="col-12 menu-card">
         Detalhes
@@ -291,6 +291,31 @@
                    tooltipPosition="top">
           </div>
         </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-12 col-md-12">
+          <div class="form-group">
+            <label for="fornecedor">Fornecedor</label>
+            <p-autoComplete name="fornecedor"
+                            inputId="fornecedor"
+                            appendTo="body"
+                            field="nome"
+                            [(ngModel)]="compra.fornecedor"
+                            [dropdown]="true"
+                            [suggestions]="fornecedorList"
+                            (completeMethod)="findFornecedor($event)"
+                            (onClear)="compra.fornecedor = null"
+                            [forceSelection]="true">
+              <!--<ng-template let-compra pTemplate="item">
+                <span class="autocomplete-id">{{compra.fornecedor.nome}}</span>
+                <span>{{compra.fornecedor.cpfCnpj}}</span>
+              </ng-template>-->
+            </p-autoComplete>
+          </div>
+        </div>
+
       </div>
 
     </form>

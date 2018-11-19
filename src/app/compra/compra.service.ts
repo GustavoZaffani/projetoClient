@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Compra} from './compra';
 import {environment} from '../../environments/environment';
+import {Pessoa} from '../pessoa/pessoa';
 
 @Injectable()
 export class CompraService {
@@ -27,5 +28,10 @@ export class CompraService {
 
   excluir(id: number): Observable<void> {
     return this.http.delete<void>(this.url + `/${id}`);
+  }
+
+  complete(query: string): Observable<Compra[]> {
+    const url = this.url + `/complete?query=${query}`;
+    return this.http.get<Compra[]>(url);
   }
 }

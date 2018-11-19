@@ -1,7 +1,7 @@
 <app-toolbar></app-toolbar>
 <br>
 <div class="container">
-  <p-card [style]="{width: '1100px', height: '300px'}" styleClass="ui-card-shadow ui-card-">
+  <p-card [style]="{width: auto, height: auto}" styleClass="ui-card-shadow ui-card-">
     <p-header>
       <div class="col-12 menu-card">
         Venda
@@ -30,6 +30,11 @@
                             [dropdown]="true"
                             appendTo="body"
                             class="teste"
+                            field="nome"
+                            [(ngModel)]="venda.cliente"
+                            [suggestions]="clienteList"
+                            (completeMethod)="findClientes($event)"
+                            (onClear)="venda.cliente = null"
                             [forceSelection]="true">
             </p-autoComplete>
           </div>
@@ -46,7 +51,12 @@
                             id="vendedor"
                             class="teste"
                             [dropdown]="true"
+                            field="nome"
                             appendTo="body"
+                            [(ngModel)]="venda.vendedor"
+                            [suggestions]="vendedorList"
+                            (completeMethod)="findVendedor($event)"
+                            (onClear)="venda.vendedor = null"
                             [forceSelection]="true">
             </p-autoComplete>
           </div>
@@ -59,7 +69,7 @@
 <br>
 
 <div class="container">
-  <p-card [style]="{width: '1100px', height: '300px'}" styleClass="ui-card-shadow ui-card-">
+  <p-card [style]="{width: auto, height: auto}" styleClass="ui-card-shadow ui-card-">
     <p-header>
       <div class="col-12 menu-card">
         <span>Veículos</span>
@@ -71,6 +81,32 @@
         </button>
       </div>
     </p-header>
+    <p-table>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th>#</th>
+          <th>Veículo</th>
+          <th>Quantidade</th>
+          <th>Valor Unitário</th>
+          <th>Valor Total</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body">
+
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <tr>
+          <td class="d-none d-lg-table-cell">&nbsp;</td>
+          <td class="d-none d-lg-table-cell">&nbsp;</td>
+          <td class="d-none d-lg-table-cell">&nbsp;</td>
+          <td class="d-none d-lg-table-cell">&nbsp;</td>
+          <td>Valor final</td>
+        </tr>
+
+      </ng-template>
+    </p-table>
     <p-footer>
       <div class="row borda-superior">
         <button pButton
@@ -84,6 +120,7 @@
                 label="Voltar"
                 icon="pi pi-times"
                 class="ui ui-button-secondary"
+                (click)="voltar()"
                 style="margin-right: .25em; width: 143px">
         </button>
       </div>
@@ -96,7 +133,7 @@
           [modal]="true"
           [responsive]="true"
           [width]="1000"
-          [minWidth]="500"
+          [minWidth]="600"
           [minY]="70"
           [baseZIndex]="10000">
 
@@ -107,9 +144,17 @@
         <label for="veiculo">Veículo</label>
         <p-autoComplete name="veiculo"
                         inputId="veiculo"
-                        appendTo="body"
+                        field="modelo"
+                        [(ngModel)]="venda.veiculo"
+                        [suggestions]="veiculosList"
+                        (completeMethod)="findVeiculos($event)"
                         [dropdown]="true"
+                        (onClear)="venda.veiculo = null"
                         [forceSelection]="true">
+          <ng-template let-compra pTemplate="item">
+            <span class="autocomplete-id">{{compra.modelo}}</span>
+            <span>{{compra.marca}}</span>
+          </ng-template>
         </p-autoComplete>
       </div>
     </div>
@@ -169,8 +214,18 @@
 
 
   <p-footer>
-    <button pButton type="button" label="Inserir" icon="pi pi-check" style="margin-right: .25em"></button>
-    <button pButton type="button" label="Voltar" icon="pi pi-times" class="ui-button-secondary" (click)="voltar()"></button>
+    <button pButton
+            type="button"
+            label="Inserir"
+            icon="pi pi-check"
+            style="margin-right: .25em">
+    </button>
+    <button pButton
+            type="button"
+            label="Voltar"
+            icon="pi pi-times"
+            class="ui-button-secondary"
+            (click)="fechar()"></button>
   </p-footer>
 </p-dialog>
 
