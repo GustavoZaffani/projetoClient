@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {VendaListComponent} from './venda.list.component';
 import {VendaFormComponent} from './venda.form.component';
 import {CardModule} from 'primeng/card';
-import {AutoCompleteModule, ButtonModule, DialogModule, TooltipModule} from 'primeng/primeng';
+import {AutoCompleteModule, ButtonModule, ConfirmationService, DialogModule, TooltipModule} from 'primeng/primeng';
 import {ToolbarrModule} from '../toolbar/toolbar.module';
 import {TableModule} from 'primeng/table';
 import {FormsModule} from '@angular/forms';

@@ -4,17 +4,18 @@
   <p-card [style]="{width: auto, height: auto}" styleClass="ui-card-shadow ui-card-">
 
     <p-header>
-        <div class="col-12 menu-card">
-          <span>Lista de Pessoas</span>
-          <button type="button"
-                  (click)="novoCadastro()"
-                  class="btn btn-link ripple btn-card">
-            <i class="fa fa-2x fa-plus-circle"></i>
-          </button>
-        </div>
+      <div class="col-12 menu-card">
+        <span>Carros</span>
+        <button type="button"
+                (click)="novaCompra()"
+                class="btn btn-link btn-card">
+          <i class="fa fa-2x fa-plus-circle"></i>
+          <span style="padding-left: 10px">Nova Compra</span>
+        </button>
+      </div>
     </p-header>
 
-    <p-table #dt [value]="pessoas" [paginator]="true" [rows]="11" [columns]="cols">
+    <p-table #dt [value]="compras" [paginator]="true" [rows]="11" [columns]="cols">
 
       <ng-template pTemplate="caption">
         <div>
@@ -38,17 +39,18 @@
       <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr [pSelectableRow]="rowData">
           <td>{{rowData.id}}</td>
-          <td>{{rowData.nome}}</td>
-          <td>{{rowData.cpfCnpj}}</td>
-          <td *ngIf="rowData.categoria == 'v'">
-            Vendedor
+          <td *ngIf="rowData.tipo == 'n'">
+            Novo
           </td>
-          <td *ngIf="rowData.categoria == 'c'">
-            Cliente
+          <td *ngIf="rowData.tipo == 's'">
+            Semi-Novo
           </td>
-          <td *ngIf="rowData.categoria == 'f'">
-            Fornecedor
-          </td>
+          <td>{{rowData.marca}}</td>
+          <td>{{rowData.modelo}}</td>
+          <td>{{rowData.anoFabricacao}}</td>
+          <td>{{rowData.precoCusto}}</td>
+          <td>{{rowData.precoVenda}}</td>
+          <td>{{rowData.qtde}}</td>
           <td>
             <button pTooltip="Editar"
                     class="botao-tabela"
@@ -59,8 +61,8 @@
 
             <button pTooltip="Excluir"
                     class="botao-tabela"
-                    tooltipPosition="top"
-                    (click)="excluir(rowData.id)">
+                    (click)="excluir(rowData.id)"
+                    tooltipPosition="top">
               <i class="fa fa-trash"></i>
             </button>
           </td>

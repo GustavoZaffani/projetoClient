@@ -8,6 +8,7 @@ import {CardModule} from 'primeng/card';
 import {VendaModule} from '../venda/venda.module';
 import {PessoaModule} from '../pessoa/pessoa.module';
 import {InputMaskModule} from 'primeng/primeng';
+import {CarrosModule} from '../carros/carros.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import {InputMaskModule} from 'primeng/primeng';
     CardModule,
     VendaModule,
     InputMaskModule,
-    PessoaModule
+    PessoaModule,
+    CarrosModule
   ],
   declarations: [
     HomeComponent

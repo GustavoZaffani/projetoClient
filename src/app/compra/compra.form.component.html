@@ -7,7 +7,7 @@
         Veículo
       </div>
     </p-header>
-    <form>
+    <form #form="ngForm">
 
       <div class="row">
         <div class="col-2">
@@ -29,10 +29,16 @@
             <input name="marca"
                    type="text"
                    id="marca"
+                   required
+                   #marca="ngModel"
+                   [ngClass]="{'is-invalid' : marca.invalid && validateForm}"
                    [(ngModel)]="compra.marca"
                    pTooltip="Informe a marca"
                    tooltipPosition="top"
                    class="form-control">
+            <div *ngIf="marca.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -43,10 +49,16 @@
             <input name="modelo"
                    type="text"
                    id="modelo"
+                   required
+                   #modelo="ngModel"
+                   [ngClass]="{'is-invalid' : modelo.invalid && validateForm}"
                    [(ngModel)]="compra.modelo"
                    pTooltip="Informe o modelo"
                    tooltipPosition="top"
                    class="form-control">
+            <div *ngIf="modelo.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
       </div>
@@ -59,10 +71,17 @@
             <input name="anoFab"
                    type="number"
                    id="anoFab"
+                   required
+                   maxlength="4"
+                   #anoFab="ngModel"
+                   [ngClass]="{'is-invalid' : anoFab.invalid && validateForm}"
                    [(ngModel)]="compra.anoFabricacao"
                    pTooltip="Informe o Ano de Fabricação"
                    tooltipPosition="top"
                    class="form-control">
+            <div *ngIf="anoFab.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -118,11 +137,17 @@
                     name="tipo"
                     pTooltip="Selecione o Tipo"
                     tooltipPosition="top"
+                    required
+                    #tipo="ngModel"
+                    [ngClass]="{'is-invalid' : tipo.invalid && validateForm}"
                     [(ngModel)]="compra.tipo"
                     class="form-control">
               <option value="n">Novo</option>
               <option value="s">Semi-Novo</option>
             </select>
+            <div *ngIf="tipo.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -135,12 +160,18 @@
                     [(ngModel)]="compra.categoria"
                     pTooltip="Selecione a Categoria"
                     tooltipPosition="top"
+                    required
+                    #categoria="ngModel"
+                    [ngClass]="{'is-invalid' : categoria.invalid && validateForm}"
                     pInputText
                     class="form-control">
               <option value="c">Carro</option>
               <option value="m">Moto</option>
               <option value="t">Caminhão</option>
             </select>
+            <div *ngIf="categoria.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -221,17 +252,26 @@
           </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-sm-4 col-md-4">
           <div class="form-group">
-            <label>Origem</label>
-            <input name="origem"
-                   id="origem"
-                   type="text"
-                   class="form-control"
-                   [(ngModel)]="compra.origem"
-                   pTooltip="Informe a origem do Veículo"
-                   tooltipPosition="top"
-                   [disabled]="true">
+            <label for="fornecedor">Fornecedor</label>
+            <p-autoComplete name="fornecedor"
+                            inputId="fornecedor"
+                            appendTo="body"
+                            field="nome"
+                            [style]="{'width':'88%'}"
+                            [inputStyle]="{'width':'88%'}"
+                            [(ngModel)]="compra.fornecedor"
+                            [dropdown]="true"
+                            [suggestions]="fornecedorList"
+                            (completeMethod)="findFornecedor($event)"
+                            (onClear)="compra.fornecedor = null"
+                            [forceSelection]="true">
+              <!--<ng-template let-compra pTemplate="item">
+                <span class="autocomplete-id">{{compra.fornecedor.nome}}</span>
+                <span>{{compra.fornecedor.cpfCnpj}}</span>
+              </ng-template>-->
+            </p-autoComplete>
           </div>
         </div>
 
@@ -246,9 +286,15 @@
                    id="custo"
                    type="text"
                    class="form-control"
+                   required
+                   #custo="ngModel"
+                   [ngClass]="{'is-invalid' : custo.invalid && validateForm}"
                    [(ngModel)]="compra.precoCusto"
                    pTooltip="Informe o Preço de Custo"
                    tooltipPosition="top">
+            <div *ngIf="custo.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -260,9 +306,15 @@
                    id="venda"
                    type="text"
                    class="form-control"
+                   required
+                   #venda="ngModel"
+                   [ngClass]="{'is-invalid' : venda.invalid && validateForm}"
                    [(ngModel)]="compra.precoVenda"
                    pTooltip="Informe o Preço de Venda"
                    tooltipPosition="top">
+            <div *ngIf="venda.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -286,36 +338,17 @@
                    id="qtde"
                    type="number"
                    class="form-control"
+                   required
+                   #qtde="ngModel"
+                   [ngClass]="{'is-invalid' : qtde.invalid && validateForm}"
                    [(ngModel)]="compra.qtde"
                    pTooltip="Informe a Quantidade Adquirida"
                    tooltipPosition="top">
+            <div *ngIf="qtde.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="row">
-
-        <div class="col-sm-12 col-md-12">
-          <div class="form-group">
-            <label for="fornecedor">Fornecedor</label>
-            <p-autoComplete name="fornecedor"
-                            inputId="fornecedor"
-                            appendTo="body"
-                            field="nome"
-                            [(ngModel)]="compra.fornecedor"
-                            [dropdown]="true"
-                            [suggestions]="fornecedorList"
-                            (completeMethod)="findFornecedor($event)"
-                            (onClear)="compra.fornecedor = null"
-                            [forceSelection]="true">
-              <!--<ng-template let-compra pTemplate="item">
-                <span class="autocomplete-id">{{compra.fornecedor.nome}}</span>
-                <span>{{compra.fornecedor.cpfCnpj}}</span>
-              </ng-template>-->
-            </p-autoComplete>
-          </div>
-        </div>
-
       </div>
 
     </form>

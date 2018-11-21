@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {$} from 'protractor';
 
 @Component({
   selector: 'app-sidenav',
@@ -10,9 +11,4 @@ export class SidenavComponent {
   constructor() {}
 
   display: true;
-
-  // openSideBar(){
-  //   this.display = true;
-  // }
-
 }

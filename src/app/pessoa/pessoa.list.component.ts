@@ -52,6 +52,10 @@ export class PessoaListComponent implements OnInit {
     });
   }
 
+  novoCadastro() {
+    this.router.navigate(['pessoas/form']);
+  }
+
   editar(id: number) {
     this.router.navigate(['pessoas/form', id]);
   }

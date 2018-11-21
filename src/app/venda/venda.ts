@@ -11,5 +11,6 @@ export class Venda {
   vlrUnitario: number;
   desconto: number;
   vlrTotal: number;
+  vlrFinal: number;
   dataVenda: number;
 }

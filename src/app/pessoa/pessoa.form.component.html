@@ -9,7 +9,7 @@
       </div>
     </p-header>
 
-    <form>
+    <form #form="ngForm">
       <div class="row">
 
         <div class="col-3 col-md-3">
@@ -21,9 +21,6 @@
                    class="form-control"
                    [(ngModel)]="pessoa.id"
                    [disabled]="true">
-            <div class="invalid-feedback">
-              OPAA
-            </div>
           </div>
         </div>
 
@@ -33,12 +30,21 @@
             <span class="campo-obrigatorio">*</span>
             <input name="nome"
                    id="nome"
+                   required
+                   autofocus
+                   #nome="ngModel"
+                   [ngClass]="{'is-invalid' : nome.invalid && validateForm}"
                    type="text"
                    class="form-control"
                    [(ngModel)]="pessoa.nome"
                    pTooltip="Informe o Nome"
                    tooltipPosition="top">
+
+            <div *ngIf="nome.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
+
         </div>
 
       </div>
@@ -85,12 +91,18 @@
                     id="categoria"
                     pTooltip="Selecione a Categoria"
                     tooltipPosition="top"
+                    required
+                    #categoria="ngModel"
+                    [ngClass]="{'is-invalid' : categoria.invalid && validateForm}"
                     [(ngModel)]="pessoa.categoria"
                     class="form-control">
               <option value="c">Cliente</option>
               <option value="v">Vendedor</option>
               <option value="f">Fornecedor</option>
             </select>
+            <div *ngIf="categoria.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -102,11 +114,17 @@
                     id="tipo"
                     pTooltip="Selecione o Tipo da Pessoa"
                     tooltipPosition="top"
+                    required
+                    #tipo="ngModel"
+                    [ngClass]="{'is-invalid' : tipo.invalid && validateForm}"
                     [(ngModel)]="pessoa.tipoPessoa"
                     class="form-control">
               <option value="f">Física</option>
               <option value="j">Jurídica</option>
             </select>
+            <div *ngIf="tipo.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -120,10 +138,16 @@
             <input name="cpf"
                    id="cpf"
                    type="number"
+                   required
+                   #cpf="ngModel"
+                   [ngClass]="{'is-invalid' : cpf.invalid && validateForm}"
                    [(ngModel)]="pessoa.cpfCnpj"
                    pTooltip="Informe o CPF/CNPJ"
                    tooltipPosition="top"
                    class="form-control">
+            <div *ngIf="cpf.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -167,9 +191,15 @@
                          placeholder="99999-999"
                          [(ngModel)]="pessoa.cep"
                          pInputText
+                         required
+                         #cep="ngModel"
+                         [ngClass]="{'is-invalid' : cep.invalid && validateForm}"
                          pTooltip="Informe o CEP"
                          tooltipPosition="top">
             </p-inputMask>
+            <div *ngIf="cep.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -180,10 +210,16 @@
             <input name="endereco"
                    id="endereco"
                    type="text"
+                   required
+                   #endereco="ngModel"
+                   [ngClass]="{'is-invalid' : endereco.invalid && validateForm}"
                    [(ngModel)]="pessoa.endereco"
                    pTooltip="Informe o Endereço"
                    tooltipPosition="top"
                    class="form-control">
+            <div *ngIf="endereco.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -223,10 +259,16 @@
             <input name="cidade"
                    id="cidade"
                    type="text"
+                   required
+                   #cidade="ngModel"
+                   [ngClass]="{'is-invalid' : cidade.invalid && validateForm}"
                    [(ngModel)]="pessoa.cidade"
                    pTooltip="Informe a Cidade"
                    tooltipPosition="top"
                    class="form-control">
+            <div *ngIf="cidade.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -237,10 +279,16 @@
             <input name="bairro"
                    id="bairro"
                    type="text"
+                   required
+                   #bairro="ngModel"
+                   [ngClass]="{'is-invalid' : bairro.invalid && validateForm}"
                    [(ngModel)]="pessoa.bairro"
                    pTooltip="Informe o Bairro"
                    tooltipPosition="top"
                    class="form-control">
+            <div *ngIf="bairro.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -251,16 +299,17 @@
             <input name="uf"
                    id="uf"
                    type="text"
+                   required
+                   maxlength="2"
+                   #uf="ngModel"
+                   [ngClass]="{'is-invalid' : uf.invalid && validateForm}"
                    [(ngModel)]="pessoa.uf"
-                   pTooltip="Informe o Bairro"
+                   pTooltip="Informe a UF"
                    tooltipPosition="top"
                    class="form-control">
-            <!--<p-autoComplete name="uf"
-                            id="uf"
-                            appendTo="body"
-                            [dropdown]="true"
-                            [forceSelection]="true">
-            </p-autoComplete>-->
+            <div *ngIf="uf.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
       </div>
@@ -277,9 +326,15 @@
                          placeholder="(99) 99999-9999"
                          [(ngModel)]="pessoa.telCel"
                          pInputText
+                         required
+                         #celular="ngModel"
+                         [ngClass]="{'is-invalid' : celular.invalid && validateForm}"
                          pTooltip="Informe o Tel. Celular"
                          tooltipPosition="top">
             </p-inputMask>
+            <div *ngIf="celular.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 

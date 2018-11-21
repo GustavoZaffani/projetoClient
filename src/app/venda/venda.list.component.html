@@ -7,28 +7,53 @@
       <div class="col-12 menu-card">
         <span>Lista de Vendas</span>
         <button type="button"
+                (click)="novaVenda()"
                 class="btn btn-link btn-card">
           <i class="fa fa-2x fa-plus-circle"></i>
-          <a routerLink="/vendas/form" routerLinkActive="active-link" href="vendas/form" style="padding-left: 10px">Nova Venda</a>
         </button>
       </div>
     </p-header>
 
-    <p-table [paginator]="true" [rows]="10  ">
-      <ng-template pTemplate="header">
+    <p-table #dt [value]="vendas" [paginator]="true" [rows]="10" [columns]="cols">
+
+      <ng-template pTemplate="caption">
+        <div>
+          <input type="text"
+                 pInputText
+                 placeholder="Pesquisar"
+                 (input)="dt.filterGlobal($event.target.value, 'contains')"
+                 class="form-control">
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header" let-columns>
         <tr>
-          <th>Código</th>
-          <th>Data da Venda</th>
-          <th>Cliente</th>
-          <th>Vendedor</th>
-          <th>Modelo</th>
-          <th>Total</th>
+          <th *ngFor="let col of columns">
+            {{col.header}}
+          </th>
+          <th width="100px">Opções</th>
         </tr>
       </ng-template>
 
-      <ng-template pTemplate="body">
-        <tr>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+          <td>{{rowData.id}}</td>
+          <td>{{rowData.cliente}}</td>
+          <td>{{rowData.vendedor}}</td>
+          <td>{{rowData.vlrTotal}}</td>
+          <td>
+            <button pTooltip="Editar"
+                    tooltipPosition="top"
+                    (click)="editar(rowData.id)">
+              <i class="fa fa-edit"></i>
+            </button>
 
+            <button pTooltip="Excluir"
+                    (click)="excluir(rowData.id)"
+                    tooltipPosition="top">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
         </tr>
       </ng-template>
     </p-table>

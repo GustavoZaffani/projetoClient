@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {CompraService} from './compra.service';
-import {Compra} from './compra';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Router} from '@angular/router';
+import {Compra} from '../compra/compra';
+import {CompraService} from '../compra/compra.service';
 
 @Component({
-  selector: 'app-compra-list',
-  templateUrl: './compra.list.component.html',
-  styleUrls: ['./compra.list.component.css']
+  selector: 'app-carros-list',
+  templateUrl: './carros.list.component.html',
+  styleUrls: ['./carros.list.component.css']
 })
-export class CompraListComponent implements OnInit {
+export class CarrosListComponent implements OnInit {
 
   compras: Compra[];
   cols: any[];
@@ -21,15 +21,22 @@ export class CompraListComponent implements OnInit {
 
     this.cols = [
       {field: 'id', header: 'Código'},
-      {field: 'fornecedor', header: 'Fornecedor'},
+      {field: 'tipo', header: 'Tipo'},
       {field: 'marca', header: 'Marca'},
       {field: 'modelo', header: 'Modelo'},
-      {field: 'qtde', header: 'Qtde Adquirida'}
+      {field: 'anoFabricacao', header: 'Ano de Fabricação'},
+      {field: 'precoCusto', header: 'Preço de Custo'},
+      {field: 'precoVenda', header: 'Preço de Venda'},
+      {field: 'qtde', header: 'Qtde em Estoque'}
     ];
   }
 
   ngOnInit(): void {
     this.atualizaTabela();
+  }
+
+  novaCompra() {
+    this.router.navigate(['compras/form']);
   }
 
   excluir (id: number) {
@@ -47,10 +54,6 @@ export class CompraListComponent implements OnInit {
           });
       }
     });
-  }
-
-  novoCadastro() {
-    this.router.navigate(['compras/form']);
   }
 
   editar(id: number) {

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {Pessoa} from '../pessoa/pessoa';
 import {Venda} from './venda';
@@ -6,6 +6,8 @@ import {VendaService} from './venda.service';
 import {PessoaService} from '../pessoa/pessoa.service';
 import {CompraService} from '../compra/compra.service';
 import {Compra} from '../compra/compra';
+import {NgForm} from '@angular/forms';
+import {validate} from 'codelyzer/walkerFactory/walkerFn';
 
 @Component({
   selector: 'app-form-venda',
@@ -20,6 +22,9 @@ export class VendaFormComponent implements OnInit {
   clienteList: Pessoa[];
   venda: Venda;
   pessoas: Pessoa[];
+  validateForm = false;
+
+  @ViewChild('form') form: NgForm;
 
 
   display: boolean;
@@ -68,4 +73,12 @@ export class VendaFormComponent implements OnInit {
       });
   }
 
+  finalizarVenda() {
+    if (this.form.valid) {
+      console.log('Passou pela validação!');
+    } else {
+      this.validateForm = true;
+      console.log('Não passou pela validação!');
+    }
+  }
 }

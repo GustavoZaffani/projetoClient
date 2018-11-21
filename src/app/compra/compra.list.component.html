@@ -5,11 +5,11 @@
 
     <p-header>
       <div class="col-12 menu-card">
-        <span>Lista de Carros</span>
+        <span>Lista de Compras</span>
         <button type="button"
+                (click)="novoCadastro()"
                 class="btn btn-link btn-card">
-          <i class="fa fa-plus-circle"></i>
-          <a routerLink="/compras/form" routerLinkActive="active-link" href="compras/form">Nova Compra</a>
+          <i class="fa fa-2x fa-plus-circle"></i>
         </button>
       </div>
     </p-header>
@@ -38,21 +38,20 @@
       <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr [pSelectableRow]="rowData">
           <td>{{rowData.id}}</td>
-          <td>{{rowData.tipo}}</td>
+          <td>{{rowData.fornecedor?.nome}}</td>
           <td>{{rowData.marca}}</td>
           <td>{{rowData.modelo}}</td>
-          <td>{{rowData.anoFabricacao}}</td>
-          <td>{{rowData.precoCusto}}</td>
-          <td>{{rowData.precoVenda}}</td>
           <td>{{rowData.qtde}}</td>
           <td>
             <button pTooltip="Editar"
                     tooltipPosition="top"
+                    class="botao-tabela"
                     (click)="editar(rowData.id)">
               <i class="fa fa-edit"></i>
             </button>
 
             <button pTooltip="Excluir"
+                    class="botao-tabela"
                     (click)="excluir(rowData.id)"
                     tooltipPosition="top">
               <i class="fa fa-trash"></i>

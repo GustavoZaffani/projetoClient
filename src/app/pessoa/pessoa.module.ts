@@ -8,7 +8,7 @@ import {ToolbarrModule} from '../toolbar/toolbar.module';
 import {TableModule} from 'primeng/table';
 import {PessoaService} from './pessoa.service';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 
 @NgModule ({
   imports: [
@@ -21,7 +21,8 @@ import {FormsModule, Validators} from '@angular/forms';
     AutoCompleteModule,
     ToolbarrModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   declarations: [
     PessoaFormComponent,

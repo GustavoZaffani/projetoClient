@@ -12,10 +12,9 @@ body {
   color: #787c80;
 }
 .btn-card {
-  font-size: 0.8em;
   padding-left: 24px !important;
   font-family: Arial, Helvetica, sans-serif, serif;
-  color: #787c80;
+  color: #787c80 !important;
   float: right;
 }
 .ajuste-complete{
@@ -44,8 +43,24 @@ p-table th {
   text-align: center;
   color: #606067;
   color: white !important;
-  background-color: #8e8e8e !important;
+  background-color: #4c689aab !important;
 }
 p-table td {
   text-align: center;
+  border: none !important;
+  border-bottom: black solid 1px;
+}
+.pesquisa-table {
+  border: none !important;
+  background-color: unset !important;
+}
+form {
+  padding-top: 8px;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+.botao-tabela {
+  border: #d2c3c3 solid 1px;
+  background-color: unset;
+  margin-right: 8px;
 }

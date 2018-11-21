@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {ConfirmationService, MessageService} from 'primeng/api';
+import {VendaService} from './venda.service';
+import {Venda} from './venda';
 
 @Component({
   selector: 'app-venda',
@@ -7,9 +11,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VendaListComponent implements OnInit {
 
-  constructor() { }
+  vendas: Venda[];
+  cols: any[];
+
+  constructor(private router: Router,
+              private confirmationService: ConfirmationService,
+              private messageService: MessageService,
+              private service: VendaService) {
+
+    this.cols = [
+      {field: 'id', header: 'Código'},
+      {field: 'id_cliente', header: 'Cliente'},
+      {field: 'id_vendedor', header: 'Vendedor'},
+      {field: 'vlr_total', header: 'Vlr da Venda'}
+    ];
+  }
 
   ngOnInit() {
   }
 
+  novaVenda() {
+    this.router.navigate(['vendas/form']);
+  }
+
+  editar(id: number) {
+    // TODO implementar o método em questão.
+  }
+
+  excluir(id: number) {
+    // TODO implementar o método em questão.
+  }
 }

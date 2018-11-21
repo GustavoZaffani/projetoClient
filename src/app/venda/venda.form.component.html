@@ -7,7 +7,7 @@
         Venda
       </div>
     </p-header>
-    <form>
+    <form #form="ngForm">
 
       <div class="row">
 
@@ -25,18 +25,27 @@
         <div class="col-9 col-md-9">
           <div class="form-group">
             <label for="cliente">Cliente</label>
+            <span class="campo-obrigatorio">*</span>
             <p-autoComplete name="cliente"
                             inputId="cliente"
                             [dropdown]="true"
                             appendTo="body"
                             class="teste"
                             field="nome"
+                            required
+                            #cliente="ngModel"
+                            [ngClass]="{'is-invalid' : cliente.invalid && validateForm}"
+                            [style]="{'width':'95%'}"
+                            [inputStyle]="{'width':'95%'}"
                             [(ngModel)]="venda.cliente"
                             [suggestions]="clienteList"
                             (completeMethod)="findClientes($event)"
                             (onClear)="venda.cliente = null"
                             [forceSelection]="true">
             </p-autoComplete>
+            <div *ngIf="cliente.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 
@@ -47,12 +56,15 @@
         <div class="col-12">
           <div class="form-group">
             <label for="vendedor">Vendedor</label>
+            <span class="campo-obrigatorio">*</span>
             <p-autoComplete name="vendedor"
                             id="vendedor"
                             class="teste"
                             [dropdown]="true"
                             field="nome"
                             appendTo="body"
+                            [style]="{'width':'96%'}"
+                            [inputStyle]="{'width':'96%'}"
                             [(ngModel)]="venda.vendedor"
                             [suggestions]="vendedorList"
                             (completeMethod)="findVendedor($event)"
@@ -113,6 +125,7 @@
                 type="button"
                 label="Finalizar Venda"
                 icon="pi pi-check"
+                (click)="finalizarVenda()"
                 style="margin-right: .25em">
         </button>
         <button pButton
@@ -145,6 +158,8 @@
         <p-autoComplete name="veiculo"
                         inputId="veiculo"
                         field="modelo"
+                        [style]="{'width':'96%'}"
+                        [inputStyle]="{'width':'96%'}"
                         [(ngModel)]="venda.veiculo"
                         [suggestions]="veiculosList"
                         (completeMethod)="findVeiculos($event)"
@@ -209,9 +224,7 @@
                [disabled]="true">
       </div>
     </div>
-
   </div>
-
 
   <p-footer>
     <button pButton

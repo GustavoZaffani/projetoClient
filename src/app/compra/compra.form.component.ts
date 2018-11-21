@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Compra} from './compra';
 import {CompraService} from './compra.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Pessoa} from '../pessoa/pessoa';
 import {PessoaService} from '../pessoa/pessoa.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-compra-form',
@@ -15,6 +16,9 @@ export class CompraFormComponent implements OnInit {
 
   compra: Compra;
   fornecedorList: Pessoa[];
+  validateForm = false;
+
+  @ViewChild('form') form: NgForm;
 
   constructor(private router: Router,
               private service: CompraService,
@@ -24,7 +28,6 @@ export class CompraFormComponent implements OnInit {
               private pessoaService:  PessoaService) { }
 
   ngOnInit() {
-    //TODO necessário quando trabalhar com a edição
     this.compra = new Compra();
 
     this.route.params.subscribe(params => {
@@ -42,27 +45,31 @@ export class CompraFormComponent implements OnInit {
   }
 
   salvar() {
-    console.log(this.compra);
-    this.calculoLucro(this.compra.precoVenda, this.compra.precoCusto);
-    console.log(this.compra);
-    this.service.save(this.compra)
-      .subscribe(e => {
-        this.compra = e;
-        this.messageService.add({severity: 'SUCCESS', detail: 'Cadastro salvo com sucesso!'});
-        this.confirmationService.confirm({
-          message: 'Gostaria de fazer um novo cadastro?',
-          acceptLabel: 'Sim',
-          rejectLabel: 'Não',
-          accept: () => {
-            this.compra = new Compra();
-          },
-          reject: () => {
-            setTimeout(() => {
-              this.voltar();
-            }, 1500);
-          }
+    if (this.form.valid) {
+      this.calculoLucro(this.compra.precoVenda, this.compra.precoCusto);
+      this.service.save(this.compra)
+        .subscribe(e => {
+          this.compra = e;
+          this.messageService.add({severity: 'sucess', detail: 'Cadastro salvo com sucesso!'});
+          setTimeout(() => {
+            this.confirmationService.confirm({
+              message: 'Gostaria de fazer um novo cadastro?',
+              acceptLabel: 'Sim',
+              rejectLabel: 'Não',
+              accept: () => {
+                this.compra = new Compra();
+              },
+              reject: () => {
+                setTimeout(() => {
+                  this.voltar();
+                }, 1500);
+              }
+            });
+          }, 1500);
         });
-      });
+    } else {
+      this.validateForm = true;
+    }
   }
 
   calculoLucro(venda: number, custo: number) {

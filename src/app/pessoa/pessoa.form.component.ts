@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PessoaService} from './pessoa.service';
 import {Pessoa} from './pessoa';
 import {ConfirmationService, MessageService} from 'primeng/api';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-pessoa',
@@ -12,12 +13,16 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 export class PessoaFormComponent implements OnInit {
 
   pessoa: Pessoa;
+  validateForm = false;
+
+  @ViewChild('form') form: NgForm;
 
   constructor(private router: Router,
               private service: PessoaService,
               private messageService: MessageService,
               private route: ActivatedRoute,
-              private confirmationService: ConfirmationService) {}
+              private confirmationService: ConfirmationService) {
+  }
 
   ngOnInit() {
     // TODO depois tem que carregar do banco se tiver parametro na url
@@ -34,24 +39,29 @@ export class PessoaFormComponent implements OnInit {
   }
 
   salvar() {
-    this.service.save(this.pessoa)
-      .subscribe(e => {
-        this.pessoa = e;
-        this.messageService.add({severity: 'SUCCESS', detail: 'Cadastro salvo com sucesso!'});
-        this.confirmationService.confirm({
-          message: 'Gostaria de fazer um novo cadastro?',
-          acceptLabel: 'Sim',
-          rejectLabel: 'Não',
-          accept: () => {
-            this.pessoa = new Pessoa();
-          },
-          reject: () => {
-            setTimeout(() => {
-              this.voltar();
-            }, 1500);
-          }
+
+    if (this.form.valid) {
+      this.service.save(this.pessoa)
+        .subscribe(e => {
+          this.pessoa = e;
+          this.messageService.add({severity: 'SUCCESS', detail: 'Cadastro salvo com sucesso!'});
+          this.confirmationService.confirm({
+            message: 'Gostaria de fazer um novo cadastro?',
+            acceptLabel: 'Sim',
+            rejectLabel: 'Não',
+            accept: () => {
+              this.pessoa = new Pessoa();
+            },
+            reject: () => {
+              setTimeout(() => {
+                this.voltar();
+              }, 1500);
+            }
+          });
         });
-      });
+    } else {
+      this.validateForm = true;
+    }
   }
 
   voltar() {

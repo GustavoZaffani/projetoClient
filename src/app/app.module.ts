@@ -11,6 +11,7 @@ import {VendaModule} from './venda/venda.module';
 import {PessoaModule} from './pessoa/pessoa.module';
 import {AppRoutingModule} from './app.routing.module';
 import {ConfirmationService, ConfirmDialogModule, GrowlModule, MessageService} from 'primeng/primeng';
+import {CarrosModule} from './carros/carros.module';
 
 @NgModule({
   declarations: [
