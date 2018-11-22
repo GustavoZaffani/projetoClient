@@ -1,14 +1,14 @@
-/*import {ModuleWithProviders} from '@angular/core';
+import {ModuleWithProviders} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CarroFormComponent} from './carro.form.component';
+import {CompraFormComponent} from './compra.form.component';
+import {CompraListComponent} from './compra.list.component';
 
 const routes: Routes = [
-  {
-    path: '', component: CarroFormComponent
 
-  }
-]
+    {path: 'compras', component: CompraListComponent},
+    {path: 'compras/form', component: CompraFormComponent},
+    {path: 'compras/form/:id', component: CompraFormComponent}
 
+];
 
-export const CarroRouting: ModuleWithProviders = RouterModule.forChild(routes);
-*/
+export const CompraRouting: ModuleWithProviders = RouterModule.forChild(routes);

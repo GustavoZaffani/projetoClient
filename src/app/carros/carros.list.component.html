@@ -48,8 +48,8 @@
           <td>{{rowData.marca}}</td>
           <td>{{rowData.modelo}}</td>
           <td>{{rowData.anoFabricacao}}</td>
-          <td>{{rowData.precoCusto}}</td>
-          <td>{{rowData.precoVenda}}</td>
+          <td>{{rowData.precoCusto | moeda}}</td>
+          <td>{{rowData.precoVenda | moeda}}</td>
           <td>{{rowData.qtde}}</td>
           <td>
             <button pTooltip="Editar"

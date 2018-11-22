@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {Pessoa} from '../pessoa/pessoa';
 import {Venda} from './venda';
@@ -20,14 +20,14 @@ export class VendaFormComponent implements OnInit {
   veiculosList: Compra[];
   vendedorList: Pessoa[];
   clienteList: Pessoa[];
-  venda: Venda;
   pessoas: Pessoa[];
   validateForm = false;
-
-  @ViewChild('form') form: NgForm;
-
-
+  qtdeDisponivel: number;
+  mostraQtdeDisponivel = false;
   display: boolean;
+
+  @Input() venda: Venda;
+  @ViewChild('form') form: NgForm;
   @Output() onCancel = new EventEmitter<void>();
 
   showDialog() {
@@ -42,6 +42,24 @@ export class VendaFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.venda = new Venda();
+  }
+
+  calculaTotalProduto(event) {
+    console.log('entrou');
+    if (this.venda.veiculo) {
+      if (this.venda.desconto) {
+        this.venda.vlrTotal = (this.venda.qtde * this.venda.vlrUnitario) * this.venda.desconto;
+      } else {
+        this.venda.vlrTotal = this.venda.qtde * this.venda.vlrUnitario;
+      }
+    } else {
+      console.log('Vazio');
+    }
+  }
+  preencheValor() {
+    this.venda.vlrUnitario = this.venda.veiculo.precoVenda;
+    this.qtdeDisponivel = this.venda.veiculo.qtde;
+    this.mostraQtdeDisponivel = true;
   }
 
   voltar() {
@@ -80,5 +98,8 @@ export class VendaFormComponent implements OnInit {
       this.validateForm = true;
       console.log('Não passou pela validação!');
     }
+  }
+  inserirTable() {
+
   }
 }

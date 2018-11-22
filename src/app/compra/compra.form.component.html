@@ -29,6 +29,7 @@
             <input name="marca"
                    type="text"
                    id="marca"
+                   autofocus
                    required
                    #marca="ngModel"
                    [ngClass]="{'is-invalid' : marca.invalid && validateForm}"
@@ -69,7 +70,7 @@
             <label for="anoFab">Ano Fabricação</label>
             <span class="campo-obrigatorio">*</span>
             <input name="anoFab"
-                   type="number"
+                   type="text"
                    id="anoFab"
                    required
                    maxlength="4"
@@ -181,10 +182,17 @@
             <input name="chassi"
                    type="text"
                    id="chassi"
+                   #chassi="ngModel"
+                   [ngClass]="{'is-invalid' : chassi.invalid && validateForm}"
+                   minlength="17"
+                   maxlength="17"
                    [(ngModel)]="compra.chassi"
                    pTooltip="Informe o Nro do Chassi"
                    tooltipPosition="top"
                    class="form-control">
+            <div *ngIf="categoria.invalid && validateForm" class="invalid-feedback">
+              Necessário ter 17 caracteres!
+            </div>
           </div>
         </div>
       </div>
@@ -255,10 +263,14 @@
         <div class="col-sm-4 col-md-4">
           <div class="form-group">
             <label for="fornecedor">Fornecedor</label>
+            <span class="campo-obrigatorio">*</span>
             <p-autoComplete name="fornecedor"
                             inputId="fornecedor"
                             appendTo="body"
                             field="nome"
+                            #fornecedor="ngModel"
+                            required
+                            [ngClass]="{ 'is-invalida' : fornecedor.invalid && validateForm}"
                             [style]="{'width':'88%'}"
                             [inputStyle]="{'width':'88%'}"
                             [(ngModel)]="compra.fornecedor"
@@ -267,11 +279,10 @@
                             (completeMethod)="findFornecedor($event)"
                             (onClear)="compra.fornecedor = null"
                             [forceSelection]="true">
-              <!--<ng-template let-compra pTemplate="item">
-                <span class="autocomplete-id">{{compra.fornecedor.nome}}</span>
-                <span>{{compra.fornecedor.cpfCnpj}}</span>
-              </ng-template>-->
             </p-autoComplete>
+            <div *ngIf="fornecedor.invalid && validateForm" class="invalid-feedback">
+              Campo Obrigatório!
+            </div>
           </div>
         </div>
 

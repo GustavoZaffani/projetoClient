@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MoedaPipe} from './moeda.pipe';
 
-@NgModule ({
+@NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    MoedaPipe
+    CpfCnpjPipeModule
   ],
   exports: [
-    MoedaPipe
+    CpfCnpjPipeModule
   ]
 })
-export class MoedaPipeModule {}
+export class CpfCnpjPipeModule {
+}

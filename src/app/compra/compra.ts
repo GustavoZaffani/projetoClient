@@ -15,10 +15,10 @@ export class Compra {
   placa: string;
   dataCompra: string;
   km: number;
-  origem: string;
   precoCusto: number;
   precoVenda: number;
   lucro: number;
   qtde: number;
   fornecedor: Pessoa;
+  vlrTotal: number;
 }

@@ -24,7 +24,8 @@ export class CompraListComponent implements OnInit {
       {field: 'fornecedor', header: 'Fornecedor'},
       {field: 'marca', header: 'Marca'},
       {field: 'modelo', header: 'Modelo'},
-      {field: 'qtde', header: 'Qtde Adquirida'}
+      {field: 'qtde', header: 'Qtde Adquirida'},
+      {field: 'vlr_total', header: 'Vlr Compra'}
     ];
   }
 

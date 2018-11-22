@@ -28,6 +28,7 @@ export class VendaListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.atualizarTabela();
   }
 
   novaVenda() {
@@ -40,5 +41,12 @@ export class VendaListComponent implements OnInit {
 
   excluir(id: number) {
     // TODO implementar o método em questão.
+  }
+
+  atualizarTabela() {
+    this.service.findAll()
+      .subscribe(e => {
+          this.vendas = e;
+        });
   }
 }

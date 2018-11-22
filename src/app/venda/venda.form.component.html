@@ -158,6 +158,7 @@
         <p-autoComplete name="veiculo"
                         inputId="veiculo"
                         field="modelo"
+                        (onSelect)="preencheValor()"
                         [style]="{'width':'96%'}"
                         [inputStyle]="{'width':'96%'}"
                         [(ngModel)]="venda.veiculo"
@@ -181,8 +182,10 @@
     <div class="col-3 col-md-3">
       <div class="form-group">
         <label for="qtde">Quantidade</label>
+        <span *ngIf="mostraQtdeDisponivel">: (Disponível {{this.qtdeDisponivel}})</span>
         <input name="qtde"
                id="qtde"
+               onInput="calculaTotalProduto(event)"
                type="number"
                pTooltip="Informe a Quantidade"
                tooltipPosition="top"
@@ -195,6 +198,7 @@
         <label for="vlrUnitario">Valor Unitário</label>
         <input name="vlrUnitario"
                id="vlrUnitario"
+               [(ngModel)]="venda.vlrUnitario"
                type="text"
                pTooltip="Informe o Valor Unitário"
                tooltipPosition="top"
@@ -207,6 +211,7 @@
         <label for="desconto">Desconto (%)</label>
         <input name="desconto"
                id="desconto"
+               [(ngModel)]="venda.desconto"
                type="number"
                pTooltip="Informe o Desconto"
                tooltipPosition="top"
@@ -220,6 +225,7 @@
         <input name="vlrTotal"
                id="vlrTotal"
                type="text"
+               ([ngModel])="venda.vlrTotal"
                class="form-control"
                [disabled]="true">
       </div>

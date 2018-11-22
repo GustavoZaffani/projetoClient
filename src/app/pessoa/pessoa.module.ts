@@ -9,6 +9,8 @@ import {TableModule} from 'primeng/table';
 import {PessoaService} from './pessoa.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {PessoaRouting} from './pessoa.routing.module';
+import {CpfCnpjPipeModule} from '../pipe/cpfCnpj/cpfCnpj.pipe.module';
 
 @NgModule ({
   imports: [
@@ -22,7 +24,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
     ToolbarrModule,
     TableModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PessoaRouting
   ],
   declarations: [
     PessoaFormComponent,

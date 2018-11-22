@@ -9,6 +9,8 @@ import {TableModule} from 'primeng/table';
 import {CompraService} from './compra.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {CompraRouting} from './compra.routing.module';
+import {MoedaPipeModule} from '../pipe/moeda/moeda.pipe.module';
 
 @NgModule ({
   imports: [
@@ -22,7 +24,9 @@ import {FormsModule} from '@angular/forms';
     ToolbarrModule,
     TableModule,
     HttpClientModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    CompraRouting,
+    MoedaPipeModule
   ],
   declarations: [
     CompraFormComponent,
