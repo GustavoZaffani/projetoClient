@@ -11,6 +11,7 @@ import {VendaService} from './venda.service';
 import {PessoaService} from '../pessoa/pessoa.service';
 import {HttpClientModule} from '@angular/common/http';
 import {CompraService} from '../compra/compra.service';
+import {MoedaPipeModule} from "../pipe/moeda/moeda.pipe.module";
 
 @NgModule ({
   imports: [
@@ -23,7 +24,8 @@ import {CompraService} from '../compra/compra.service';
     ToolbarrModule,
     TableModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MoedaPipeModule
   ],
   declarations: [
     VendaListComponent,

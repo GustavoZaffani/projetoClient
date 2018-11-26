@@ -8,6 +8,8 @@ import {CompraService} from '../compra/compra.service';
 import {Compra} from '../compra/compra';
 import {NgForm} from '@angular/forms';
 import {validate} from 'codelyzer/walkerFactory/walkerFn';
+import {VendaItem} from "./vendaItem";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-form-venda',
@@ -15,7 +17,7 @@ import {validate} from 'codelyzer/walkerFactory/walkerFn';
   styleUrls: ['./venda.form.component.css']
 })
 
-export class VendaFormComponent implements OnInit {
+export class VendaFormComponent {
 
   veiculosList: Compra[];
   vendedorList: Pessoa[];
@@ -25,40 +27,42 @@ export class VendaFormComponent implements OnInit {
   qtdeDisponivel: number;
   mostraQtdeDisponivel = false;
   display: boolean;
+  vendaItemToAdd: VendaItem;
+  totalItens: number;
+  venda: Venda;
 
-  @Input() venda: Venda;
   @ViewChild('form') form: NgForm;
   @Output() onCancel = new EventEmitter<void>();
 
   showDialog() {
+    this.vendaItemToAdd = new VendaItem();
     this.display = true;
   }
 
   constructor(private route: Router,
               private pessoaService: PessoaService,
               private vendaService: VendaService,
-              private compraService: CompraService) {
-  }
-
-  ngOnInit(): void {
+              private compraService: CompraService,
+              private messageService: MessageService) {
     this.venda = new Venda();
   }
 
   calculaTotalProduto(event) {
-    console.log('entrou');
-    if (this.venda.veiculo) {
-      if (this.venda.desconto) {
-        this.venda.vlrTotal = (this.venda.qtde * this.venda.vlrUnitario) * this.venda.desconto;
+    if (this.vendaItemToAdd) {
+      if (this.vendaItemToAdd.desconto) {
+        this.vendaItemToAdd.valorTotal = (this.vendaItemToAdd.quantidade * this.vendaItemToAdd.valorUnitario)
+            - ((this.vendaItemToAdd.quantidade * this.vendaItemToAdd.valorUnitario) * (this.vendaItemToAdd.desconto / 100));
       } else {
-        this.venda.vlrTotal = this.venda.qtde * this.venda.vlrUnitario;
+        this.vendaItemToAdd.valorTotal = this.vendaItemToAdd.quantidade * this.vendaItemToAdd.valorUnitario;
       }
     } else {
       console.log('Vazio');
     }
   }
+
   preencheValor() {
-    this.venda.vlrUnitario = this.venda.veiculo.precoVenda;
-    this.qtdeDisponivel = this.venda.veiculo.qtde;
+    this.vendaItemToAdd.valorUnitario = this.vendaItemToAdd.veiculo.precoVenda;
+    this.qtdeDisponivel = this.vendaItemToAdd.quantidade;
     this.mostraQtdeDisponivel = true;
   }
 
@@ -93,13 +97,24 @@ export class VendaFormComponent implements OnInit {
 
   finalizarVenda() {
     if (this.form.valid) {
-      console.log('Passou pela validação!');
+      this.vendaService.save(this.venda)
+        .subscribe(e => {
+          this.venda = e;
+          this.messageService.add({severity: 'sucess', detail: 'Venda realizada com sucesso!'});
+        })
     } else {
       this.validateForm = true;
       console.log('Não passou pela validação!');
     }
   }
   inserirTable() {
-
+    if (!this.venda.itens){
+      this.venda.itens = [];
+    }
+    this.venda.itens.push(this.vendaItemToAdd);
+    this.display = false;
+    this.totalItens = this.totalItens + this.vendaItemToAdd.valorTotal;
+    console.log(this.totalItens);
+    this.mostraQtdeDisponivel = false;
   }
 }

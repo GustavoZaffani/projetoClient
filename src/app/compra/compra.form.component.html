@@ -225,6 +225,7 @@
                          id="placa"
                          mask="aaa-9999"
                          placeholder="ABC-1234"
+                         [style]="{'width':'100%'}"
                          [(ngModel)]="compra.placa"
                          pTooltip="Informe a Placa"
                          tooltipPosition="top"
@@ -241,6 +242,8 @@
                         [(ngModel)]="compra.dataCompra"
                         pTooltip="Informe a Data da Compra"
                         tooltipPosition="top"
+                        [style]="{'width':'100%'}"
+                        [inputStyle]="{'width':'100%'}"
                         dataType="string"
                         dateFormat="dd/mm/yy">
             </p-calendar>
@@ -270,7 +273,7 @@
                             field="nome"
                             #fornecedor="ngModel"
                             required
-                            [ngClass]="{ 'is-invalida' : fornecedor.invalid && validateForm}"
+                            [ngClass]="{ 'is-invalid' : fornecedor.invalid && validateForm}"
                             [style]="{'width':'88%'}"
                             [inputStyle]="{'width':'88%'}"
                             [(ngModel)]="compra.fornecedor"

@@ -192,6 +192,7 @@
                          [(ngModel)]="pessoa.cep"
                          pInputText
                          required
+                         [style]="{'width':'88%'}"
                          #cep="ngModel"
                          [ngClass]="{'is-invalid' : cep.invalid && validateForm}"
                          pTooltip="Informe o CEP"
@@ -327,6 +328,7 @@
                          [(ngModel)]="pessoa.telCel"
                          pInputText
                          required
+                         [style]="{'width':'100%'}"
                          #celular="ngModel"
                          [ngClass]="{'is-invalid' : celular.invalid && validateForm}"
                          pTooltip="Informe o Tel. Celular"
@@ -347,6 +349,7 @@
                          placeholder="(99) 9999-9999"
                          [(ngModel)]="pessoa.telRes"
                          pInputText
+                         [style]="{'width':'100%'}"
                          pTooltip="Informe o Tel. Residencial"
                          tooltipPosition="top">
             </p-inputMask>
