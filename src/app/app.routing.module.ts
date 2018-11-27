@@ -12,6 +12,7 @@ const routes: Routes = [
   {path: 'pessoa', loadChildren: './pessoa/pessoa.module#PessoaModule'},
   {path: 'vendas', component: VendaListComponent},
   {path: 'vendas/form', component: VendaFormComponent},
+  {path: 'vendas/form/:id', component: VendaFormComponent},
   {path: 'carros', component: CarrosListComponent},
   {path: 'relatorio', component: RelatorioComponent}
 ];

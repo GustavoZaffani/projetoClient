@@ -7,8 +7,6 @@ export class Venda {
   cliente: Pessoa;
   vendedor: Pessoa;
   itens: VendaItem[];
-  qtde: number;
   vlrTotal: number;
-  vlrFinal: number;
-  dataVenda: number;
+  dataVenda: string;
 }

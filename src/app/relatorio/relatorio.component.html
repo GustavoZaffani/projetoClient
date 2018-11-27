@@ -9,7 +9,7 @@
       </div>
     </p-header>
 
-    <p-table #dt [value]="relatorio" [paginator]="true" [rows]="11" [columns]="cols">
+    <p-table #dt [value]="relatorios" [paginator]="true" [rows]="11" [columns]="cols">
 
       <ng-template pTemplate="caption">
         <div>
@@ -31,7 +31,7 @@
       </ng-template>
 
       <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr  [pSelectableRow]="rowData">
+        <tr [pSelectableRow]="rowData">
           <td>{{rowData.id}}</td>
           <td *ngIf="rowData.tipo == 'C'">
             Compra
@@ -46,7 +46,7 @@
             <button pTooltip="Visualizar Dados"
                     class="botao-tabela"
                     tooltipPosition="top"
-                    (click)=visualizarDados(rowData.idTransacao)>
+                    (click)=visualizarDados(rowData.idTransacao,rowData.tipo)>
               <i class="fa fa-info"></i>
             </button>
           </td>
@@ -54,20 +54,21 @@
       </ng-template>
 
       <ng-template pTemplate="footer">
-        <tr class="borda-superior">
-          <td>Total de Despesas</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td>-</td>
-        </tr>
 
         <tr class="borda-superior">
           <td>Total de Vendas</td>
           <td class="d-none d-lg-table-cell">&nbsp;</td>
           <td class="d-none d-lg-table-cell">&nbsp;</td>
           <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td>-</td>
+          <td>{{vendas | moeda}}</td>
+        </tr>
+
+        <tr class="borda-superior">
+          <td>Total de Despesas</td>
+          <td class="d-none d-lg-table-cell">&nbsp;</td>
+          <td class="d-none d-lg-table-cell">&nbsp;</td>
+          <td class="d-none d-lg-table-cell">&nbsp;</td>
+          <td>{{despesas | moeda}}</td>
         </tr>
 
         <tr class="borda-superior">
@@ -75,7 +76,7 @@
           <td class="d-none d-lg-table-cell">&nbsp;</td>
           <td class="d-none d-lg-table-cell">&nbsp;</td>
           <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td>-</td>
+          <td>{{resultadoFinal | moeda}}</td>
         </tr>
       </ng-template>
     </p-table>

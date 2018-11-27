@@ -21,10 +21,13 @@ export class VendaListComponent implements OnInit {
 
     this.cols = [
       {field: 'id', header: 'Código'},
+      {field: 'data_venda', header: 'Data da Venda'},
       {field: 'id_cliente', header: 'Cliente'},
       {field: 'id_vendedor', header: 'Vendedor'},
       {field: 'vlr_total', header: 'Vlr da Venda'}
     ];
+
+    //return moment(new Date()).format("DD/MM/YYYY");
   }
 
   ngOnInit() {
@@ -36,11 +39,24 @@ export class VendaListComponent implements OnInit {
   }
 
   editar(id: number) {
-    // TODO implementar o método em questão.
+    this.router.navigate(['vendas/form', id]);
   }
 
   excluir(id: number) {
-    // TODO implementar o método em questão.
+    this.confirmationService.confirm( {
+      message: 'Tem certeza que deseja excluir o registro?',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
+      accept: () => {
+        this.service.excluir(id)
+          .subscribe( e => {
+            this.atualizarTabela();
+            this.messageService.add({severity: 'success', detail: 'Registro excluído com sucesso!'});
+          }, error => {
+            console.log(error);
+          });
+      }
+    });
   }
 
   atualizarTabela() {

@@ -17,7 +17,6 @@ export class CompraFormComponent implements OnInit {
   compra: Compra;
   fornecedorList: Pessoa[];
   validateForm = false;
-  total: number;
 
   @ViewChild('form') form: NgForm;
 
@@ -48,11 +47,10 @@ export class CompraFormComponent implements OnInit {
   salvar() {
     if (this.form.valid) {
       this.calculoLucro(this.compra.precoVenda, this.compra.precoCusto);
-      this.calculoTotalVenda(this.compra.precoVenda, this.compra.qtde);
       this.service.save(this.compra)
         .subscribe(e => {
           this.compra = e;
-          this.messageService.add({severity: 'sucess', detail: 'Cadastro salvo com sucesso!'});
+          this.messageService.add({severity: 'success', detail: 'Cadastro salvo com sucesso!'});
           setTimeout(() => {
             this.confirmationService.confirm({
               message: 'Gostaria de fazer um novo cadastro?',
@@ -64,7 +62,7 @@ export class CompraFormComponent implements OnInit {
               reject: () => {
                 setTimeout(() => {
                   this.voltar();
-                }, 1500);
+                }, 1200);
               }
             });
           }, 1500);
@@ -73,6 +71,7 @@ export class CompraFormComponent implements OnInit {
       this.validateForm = true;
     }
   }
+
 
   calculoLucro(venda: number, custo: number) {
     this.compra.lucro = venda - custo;
@@ -83,9 +82,5 @@ export class CompraFormComponent implements OnInit {
       .subscribe(e => {
         this.fornecedorList = e;
       });
-  }
-
-  calculoTotalVenda(preco: number, qtde: number) {
-    this.compra.vlrTotal = this.compra.precoVenda * this.compra.qtde;
   }
 }

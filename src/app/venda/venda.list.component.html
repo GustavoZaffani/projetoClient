@@ -38,17 +38,20 @@
       <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr [pSelectableRow]="rowData">
           <td>{{rowData.id}}</td>
-          <td>{{rowData.cliente}}</td>
-          <td>{{rowData.vendedor}}</td>
-          <td>{{rowData.vlrTotal}}</td>
+          <td>{{rowData.dataVenda}}</td>
+          <td>{{rowData.cliente.nome}}</td>
+          <td>{{rowData.vendedor.nome}}</td>
+          <td>{{rowData.vlrTotal | moeda  }}</td>
           <td>
             <button pTooltip="Editar"
                     tooltipPosition="top"
+                    class="botao-tabela"
                     (click)="editar(rowData.id)">
               <i class="fa fa-edit"></i>
             </button>
 
             <button pTooltip="Excluir"
+                    class="botao-tabela"
                     (click)="excluir(rowData.id)"
                     tooltipPosition="top">
               <i class="fa fa-trash"></i>

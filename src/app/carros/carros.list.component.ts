@@ -27,7 +27,6 @@ export class CarrosListComponent implements OnInit {
       {field: 'anoFabricacao', header: 'Ano de Fabricação'},
       {field: 'precoCusto', header: 'Preço de Custo'},
       {field: 'precoVenda', header: 'Preço de Venda'},
-      {field: 'qtde', header: 'Qtde em Estoque'}
     ];
   }
 

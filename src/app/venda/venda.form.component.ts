@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Pessoa} from '../pessoa/pessoa';
 import {Venda} from './venda';
 import {VendaService} from './venda.service';
@@ -7,9 +7,9 @@ import {PessoaService} from '../pessoa/pessoa.service';
 import {CompraService} from '../compra/compra.service';
 import {Compra} from '../compra/compra';
 import {NgForm} from '@angular/forms';
-import {validate} from 'codelyzer/walkerFactory/walkerFn';
 import {VendaItem} from "./vendaItem";
 import {MessageService} from "primeng/api";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-form-venda',
@@ -17,15 +17,13 @@ import {MessageService} from "primeng/api";
   styleUrls: ['./venda.form.component.css']
 })
 
-export class VendaFormComponent {
+export class VendaFormComponent implements OnInit{
 
   veiculosList: Compra[];
   vendedorList: Pessoa[];
   clienteList: Pessoa[];
   pessoas: Pessoa[];
   validateForm = false;
-  qtdeDisponivel: number;
-  mostraQtdeDisponivel = false;
   display: boolean;
   vendaItemToAdd: VendaItem;
   totalItens: number;
@@ -39,35 +37,46 @@ export class VendaFormComponent {
     this.display = true;
   }
 
-  constructor(private route: Router,
+  constructor(private router: Router,
               private pessoaService: PessoaService,
               private vendaService: VendaService,
               private compraService: CompraService,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private route: ActivatedRoute) {
+  }
+
+  ngOnInit(): void {
+
     this.venda = new Venda();
+    this.route.params.subscribe( params => {
+      if(params['id']) {
+        this.vendaService.findOne(params['id'])
+          .subscribe(e => {
+            this.venda = e;
+          })
+      }
+    });
   }
 
   calculaTotalProduto(event) {
-    if (this.vendaItemToAdd) {
+    if (this.vendaItemToAdd.veiculo) {
       if (this.vendaItemToAdd.desconto) {
-        this.vendaItemToAdd.valorTotal = (this.vendaItemToAdd.quantidade * this.vendaItemToAdd.valorUnitario)
-            - ((this.vendaItemToAdd.quantidade * this.vendaItemToAdd.valorUnitario) * (this.vendaItemToAdd.desconto / 100));
+        this.vendaItemToAdd.valorTotal = this.vendaItemToAdd.valorUnitario - ((this.vendaItemToAdd.valorUnitario) * (this.vendaItemToAdd.desconto / 100));
       } else {
         this.vendaItemToAdd.valorTotal = this.vendaItemToAdd.quantidade * this.vendaItemToAdd.valorUnitario;
       }
+
     } else {
-      console.log('Vazio');
+      console.log('Necessário informar o veículo.');
     }
   }
 
   preencheValor() {
     this.vendaItemToAdd.valorUnitario = this.vendaItemToAdd.veiculo.precoVenda;
-    this.qtdeDisponivel = this.vendaItemToAdd.quantidade;
-    this.mostraQtdeDisponivel = true;
   }
 
   voltar() {
-    this.route.navigate(['/vendas']);
+    this.router.navigate(['/vendas']);
   }
 
   fechar(): void {
@@ -97,24 +106,30 @@ export class VendaFormComponent {
 
   finalizarVenda() {
     if (this.form.valid) {
+      this.venda.dataVenda = moment(new Date()).format("DD/MM/YYYY");
       this.vendaService.save(this.venda)
         .subscribe(e => {
           this.venda = e;
-          this.messageService.add({severity: 'sucess', detail: 'Venda realizada com sucesso!'});
+          this.messageService.add({severity: 'success', detail: 'Venda realizada com sucesso!'});
+          this.voltar();
         })
     } else {
       this.validateForm = true;
       console.log('Não passou pela validação!');
     }
   }
-  inserirTable() {
+  inserirTable(event) {
     if (!this.venda.itens){
       this.venda.itens = [];
     }
     this.venda.itens.push(this.vendaItemToAdd);
     this.display = false;
-    this.totalItens = this.totalItens + this.vendaItemToAdd.valorTotal;
-    console.log(this.totalItens);
-    this.mostraQtdeDisponivel = false;
+
+    if(!this.totalItens) {
+      this.totalItens = 0;
+    }
+
+    this.totalItens += this.vendaItemToAdd.valorTotal;
+    this.venda.vlrTotal = this.totalItens;
   }
 }

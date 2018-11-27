@@ -120,13 +120,13 @@
       </ng-template>
 
       <ng-template pTemplate="footer">
-        <tr>
+        <tr *ngIf="venda.vlrTotal">
           <td class="d-none d-lg-table-cell">&nbsp;</td>
           <td class="d-none d-lg-table-cell">&nbsp;</td>
           <td class="d-none d-lg-table-cell">&nbsp;</td>
           <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td>{{totalItens}}</td>
+          <td>Valor Final</td>
+          <td>{{totalItens | moeda}}</td>
         </tr>
       </ng-template>
     </p-table>
@@ -191,22 +191,7 @@
 
   <div class="row">
 
-    <div class="col-3 col-md-3">
-      <div class="form-group">
-        <label for="qtde">Quantidade</label>
-        <span *ngIf="mostraQtdeDisponivel">: (Disponível {{vendaItemToAdd.veiculo.qtde}})</span>
-        <input name="qtde"
-               id="qtde"
-               (blur)="calculaTotalProduto($event)"
-               [(ngModel)]="vendaItemToAdd.quantidade"
-               type="number"
-               pTooltip="Informe a Quantidade"
-               tooltipPosition="top"
-               class="form-control">
-      </div>
-    </div>
-
-    <div class="col-3 col-md-3">
+    <div class="col-4 col-md-4">
       <div class="form-group">
         <label for="vlrUnitario">Valor Unitário</label>
         <input name="vlrUnitario"
@@ -219,7 +204,7 @@
       </div>
     </div>
 
-    <div class="col-3 col-md-3">
+    <div class="col-4 col-md-4">
       <div class="form-group">
         <label for="desconto">Desconto (%)</label>
         <input name="desconto"
@@ -233,7 +218,7 @@
       </div>
     </div>
 
-    <div class="col-3 col-md-3">
+    <div class="col-4 col-md-4">
       <div class="form-group">
         <label for="vlrTotal">Valor Total</label>
         <input name="vlrTotal"
@@ -250,7 +235,7 @@
     <button pButton
             type="button"
             label="Inserir"
-            (click)="inserirTable()"
+            (click)="inserirTable($event)"
             icon="pi pi-check"
             style="margin-right: .25em">
     </button>

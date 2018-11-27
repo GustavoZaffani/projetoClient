@@ -44,20 +44,22 @@ export class PessoaFormComponent implements OnInit {
       this.service.save(this.pessoa)
         .subscribe(e => {
           this.pessoa = e;
-          this.messageService.add({severity: 'SUCCESS', detail: 'Cadastro salvo com sucesso!'});
-          this.confirmationService.confirm({
-            message: 'Gostaria de fazer um novo cadastro?',
-            acceptLabel: 'Sim',
-            rejectLabel: 'Não',
-            accept: () => {
-              this.pessoa = new Pessoa();
-            },
-            reject: () => {
-              setTimeout(() => {
-                this.voltar();
-              }, 1500);
-            }
-          });
+          this.messageService.add({severity: 'success', detail: 'Cadastro salvo com sucesso!'});
+          setTimeout(() => {
+            this.confirmationService.confirm({
+              message: 'Gostaria de fazer um novo cadastro?',
+              acceptLabel: 'Sim',
+              rejectLabel: 'Não',
+              accept: () => {
+                this.pessoa = new Pessoa();
+              },
+              reject: () => {
+                setTimeout(() => {
+                  this.voltar();
+                }, 1500);
+              }
+            });
+          }, 1200);
         });
     } else {
       this.validateForm = true;

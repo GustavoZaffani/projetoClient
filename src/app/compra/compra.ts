@@ -18,7 +18,6 @@ export class Compra {
   precoCusto: number;
   precoVenda: number;
   lucro: number;
-  qtde: number;
   fornecedor: Pessoa;
-  vlrTotal: number;
+  vendido: boolean;
 }

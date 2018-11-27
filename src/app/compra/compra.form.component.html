@@ -331,6 +331,20 @@
             </div>
           </div>
         </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label for="vendido">Vendido</label>
+            <p-checkbox [(ngModel)]="compra.vendido"
+                        name="vendido"
+                        id="vendido"
+                        binary="true">
+            </p-checkbox>
+            <!--<input name="qtde"-->
+            <!--id="qtde"-->
+            <!--type="checkbox"-->
+            <!--class="form-check-input form-control">-->
+          </div>
+        </div>
 
         <div class="col-3 col-md-3">
           <div class="form-group">
@@ -344,25 +358,6 @@
           </div>
         </div>
 
-        <div class="col-3">
-          <div class="form-group">
-            <label for="qtde">Quantidade</label>
-            <span class="campo-obrigatorio">*</span>
-            <input name="qtde"
-                   id="qtde"
-                   type="number"
-                   class="form-control"
-                   required
-                   #qtde="ngModel"
-                   [ngClass]="{'is-invalid' : qtde.invalid && validateForm}"
-                   [(ngModel)]="compra.qtde"
-                   pTooltip="Informe a Quantidade Adquirida"
-                   tooltipPosition="top">
-            <div *ngIf="qtde.invalid && validateForm" class="invalid-feedback">
-              Campo Obrigatório!
-            </div>
-          </div>
-        </div>
       </div>
 
     </form>

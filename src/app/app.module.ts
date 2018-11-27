@@ -11,6 +11,7 @@ import {VendaModule} from './venda/venda.module';
 import {PessoaModule} from './pessoa/pessoa.module';
 import {AppRoutingModule} from './app.routing.module';
 import {ConfirmationService, ConfirmDialogModule, GrowlModule, MessageService} from 'primeng/primeng';
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ConfirmationService, ConfirmDialogModule, GrowlModule, MessageService} f
     VendaModule,
     PessoaModule,
     AppRoutingModule,
-    GrowlModule
+    GrowlModule,
+    ToastModule
   ],
   providers: [
     ConfirmationService,

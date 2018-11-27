@@ -1,9 +1,16 @@
-import {NgModule} from '@angular/core';
+  import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CompraFormComponent} from './compra.form.component';
 import {CompraListComponent} from './compra.list.component';
 import {CardModule} from 'primeng/card';
-import {AutoCompleteModule, ButtonModule, CalendarModule, InputMaskModule, TooltipModule} from 'primeng/primeng';
+import {
+  AutoCompleteModule,
+  ButtonModule,
+  CalendarModule,
+  CheckboxModule,
+  InputMaskModule,
+  TooltipModule
+} from 'primeng/primeng';
 import {ToolbarrModule} from '../toolbar/toolbar.module';
 import {TableModule} from 'primeng/table';
 import {CompraService} from './compra.service';
@@ -26,7 +33,8 @@ import {MoedaPipeModule} from '../pipe/moeda/moeda.pipe.module';
     HttpClientModule,
     AutoCompleteModule,
     CompraRouting,
-    MoedaPipeModule
+    MoedaPipeModule,
+    CheckboxModule
   ],
   declarations: [
     CompraFormComponent,
