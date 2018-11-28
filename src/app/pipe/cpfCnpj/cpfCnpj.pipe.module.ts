@@ -1,15 +1,16 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {CpfCnpjPipe} from "./cpfCnpj.pipe";
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    CpfCnpjPipeModule
+    CpfCnpjPipe
   ],
   exports: [
-    CpfCnpjPipeModule
+    CpfCnpjPipe
   ]
 })
 export class CpfCnpjPipeModule {

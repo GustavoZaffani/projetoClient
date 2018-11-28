@@ -17,6 +17,7 @@ export class CompraFormComponent implements OnInit {
   compra: Compra;
   fornecedorList: Pessoa[];
   validateForm = false;
+  update = false;
 
   @ViewChild('form') form: NgForm;
 
@@ -32,6 +33,7 @@ export class CompraFormComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       if (params['id']) {
+        this.update = true;
         this.service.findOne(params['id'])
           .subscribe(e => {
             this.compra = e;
@@ -41,7 +43,7 @@ export class CompraFormComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['/compras']);
+    window.history.back();
   }
 
   salvar() {
@@ -50,22 +52,24 @@ export class CompraFormComponent implements OnInit {
       this.service.save(this.compra)
         .subscribe(e => {
           this.compra = e;
-          this.messageService.add({severity: 'success', detail: 'Cadastro salvo com sucesso!'});
+          if(this.update) {
+            this.messageService.add({severity: 'success', detail: 'Cadastro atualizado com sucesso!'});
+          } else {
+            this.messageService.add({severity: 'success', detail: 'Cadastro salvo com sucesso!'});
+            setTimeout(() => {
+              this.confirmationService.confirm({
+                message: 'Gostaria de fazer um novo cadastro?',
+                acceptLabel: 'Sim',
+                rejectLabel: 'Não',
+                accept: () => {
+                  this.compra = new Compra();
+                }
+              });
+            }, 1500);
+          }
           setTimeout(() => {
-            this.confirmationService.confirm({
-              message: 'Gostaria de fazer um novo cadastro?',
-              acceptLabel: 'Sim',
-              rejectLabel: 'Não',
-              accept: () => {
-                this.compra = new Compra();
-              },
-              reject: () => {
-                setTimeout(() => {
-                  this.voltar();
-                }, 1200);
-              }
-            });
-          }, 1500);
+            this.voltar();
+          }, 1200);
         });
     } else {
       this.validateForm = true;

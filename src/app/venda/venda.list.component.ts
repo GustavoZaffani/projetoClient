@@ -26,8 +26,6 @@ export class VendaListComponent implements OnInit {
       {field: 'id_vendedor', header: 'Vendedor'},
       {field: 'vlr_total', header: 'Vlr da Venda'}
     ];
-
-    //return moment(new Date()).format("DD/MM/YYYY");
   }
 
   ngOnInit() {
@@ -47,6 +45,8 @@ export class VendaListComponent implements OnInit {
       message: 'Tem certeza que deseja excluir o registro?',
       acceptLabel: 'Sim',
       rejectLabel: 'Não',
+      header: 'Confirmação',
+      icon: 'fa fa-question-circle-o',
       accept: () => {
         this.service.excluir(id)
           .subscribe( e => {

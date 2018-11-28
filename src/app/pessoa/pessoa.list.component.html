@@ -39,7 +39,9 @@
         <tr [pSelectableRow]="rowData">
           <td>{{rowData.id}}</td>
           <td>{{rowData.nome}}</td>
-          <td>{{rowData.cpfCnpj}}</td>
+
+          <td>{{rowData.cpfCnpj | cpfCnpj}}</td>
+
           <td *ngIf="rowData.categoria == 'v'">
             Vendedor
           </td>

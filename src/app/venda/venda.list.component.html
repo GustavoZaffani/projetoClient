@@ -39,9 +39,9 @@
         <tr [pSelectableRow]="rowData">
           <td>{{rowData.id}}</td>
           <td>{{rowData.dataVenda}}</td>
-          <td>{{rowData.cliente.nome}}</td>
-          <td>{{rowData.vendedor.nome}}</td>
-          <td>{{rowData.vlrTotal | moeda  }}</td>
+          <td>{{rowData.cliente?.nome}}</td>
+          <td>{{rowData.vendedor?.nome}}</td>
+          <td>{{rowData.vlrTotal | currencyFormat}}</td>
           <td>
             <button pTooltip="Editar"
                     tooltipPosition="top"

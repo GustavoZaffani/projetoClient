@@ -137,9 +137,11 @@
             <span class="campo-obrigatorio">*</span>
             <input name="cpf"
                    id="cpf"
-                   type="number"
+                   type="text"
                    required
                    #cpf="ngModel"
+                   minlength="11"
+                   maxlength="14"
                    [ngClass]="{'is-invalid' : cpf.invalid && validateForm}"
                    [(ngModel)]="pessoa.cpfCnpj"
                    pTooltip="Informe o CPF/CNPJ"

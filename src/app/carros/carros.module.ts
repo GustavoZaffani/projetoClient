@@ -8,7 +8,7 @@ import {TableModule} from 'primeng/table';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {CompraService} from '../compra/compra.service';
-import {MoedaPipeModule} from '../pipe/moeda/moeda.pipe.module';
+import {CurrencyFormatPipeModule} from "../pipe/currencyFormat/currencyFormat.pipe.module";
 
 @NgModule ({
   imports: [
@@ -23,7 +23,7 @@ import {MoedaPipeModule} from '../pipe/moeda/moeda.pipe.module';
     TableModule,
     HttpClientModule,
     AutoCompleteModule,
-    MoedaPipeModule
+    CurrencyFormatPipeModule
   ],
   declarations: [
     CarrosListComponent

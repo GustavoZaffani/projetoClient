@@ -6,7 +6,7 @@ export class Pessoa {
   estadoCivil: string;
   categoria: string;
   tipoPessoa: string;
-  cpfCnpj: number;
+  cpfCnpj: string;
   rg: number;
   ie: number;
   cep: string;

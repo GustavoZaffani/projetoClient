@@ -25,7 +25,8 @@ import {CpfCnpjPipeModule} from '../pipe/cpfCnpj/cpfCnpj.pipe.module';
     TableModule,
     HttpClientModule,
     ReactiveFormsModule,
-    PessoaRouting
+    PessoaRouting,
+    CpfCnpjPipeModule
   ],
   declarations: [
     PessoaFormComponent,

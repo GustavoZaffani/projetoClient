@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {PessoaService} from './pessoa.service';
 import {Pessoa} from './pessoa';
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-pessoa',
@@ -14,6 +14,7 @@ export class PessoaFormComponent implements OnInit {
 
   pessoa: Pessoa;
   validateForm = false;
+  update = false;
 
   @ViewChild('form') form: NgForm;
 
@@ -30,6 +31,7 @@ export class PessoaFormComponent implements OnInit {
     this.pessoa = new Pessoa();
     this.route.params.subscribe(params => {
       if (params['id']) {
+        this.update = true;
         this.service.findOne(params['id'])
           .subscribe(e => {
             this.pessoa = e;
@@ -39,27 +41,29 @@ export class PessoaFormComponent implements OnInit {
   }
 
   salvar() {
-
     if (this.form.valid) {
       this.service.save(this.pessoa)
         .subscribe(e => {
           this.pessoa = e;
-          this.messageService.add({severity: 'success', detail: 'Cadastro salvo com sucesso!'});
+
+          if(this.update) {
+            this.messageService.add({severity: 'success', detail: 'Cadastro atualizado com sucesso!'});
+          } else {
+            this.messageService.add({severity: 'success', detail: 'Cadastro salvo com sucesso!'});
+            setTimeout(() => {
+              this.confirmationService.confirm({
+                message: 'Gostaria de fazer um novo cadastro?',
+                acceptLabel: 'Sim',
+                rejectLabel: 'Não',
+                accept: () => {
+                  this.pessoa = new Pessoa();
+                },
+              });
+            }, 1200);
+          }
           setTimeout(() => {
-            this.confirmationService.confirm({
-              message: 'Gostaria de fazer um novo cadastro?',
-              acceptLabel: 'Sim',
-              rejectLabel: 'Não',
-              accept: () => {
-                this.pessoa = new Pessoa();
-              },
-              reject: () => {
-                setTimeout(() => {
-                  this.voltar();
-                }, 1500);
-              }
-            });
-          }, 1200);
+            this.voltar();
+          }, 1500);
         });
     } else {
       this.validateForm = true;
@@ -67,6 +71,6 @@ export class PessoaFormComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['/pessoas']);
+    window.history.back();
   }
 }

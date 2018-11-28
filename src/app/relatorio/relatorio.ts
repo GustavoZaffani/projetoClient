@@ -1,8 +1,14 @@
 export class Relatorio {
 
   id: number;
-  idTransacao: number;
+  valor: number;
   tipo: string;
-  vlr: number;
   data: string;
+
+  constructor(id: number, valor: number, tipo: string, data: string) {
+    this.id = id;
+    this.valor = valor;
+    this.tipo = tipo;
+    this.data = data;
+  }
 }

@@ -11,7 +11,7 @@ import {VendaService} from './venda.service';
 import {PessoaService} from '../pessoa/pessoa.service';
 import {HttpClientModule} from '@angular/common/http';
 import {CompraService} from '../compra/compra.service';
-import {MoedaPipeModule} from "../pipe/moeda/moeda.pipe.module";
+import {CurrencyFormatPipeModule} from "../pipe/currencyFormat/currencyFormat.pipe.module";
 
 @NgModule ({
   imports: [
@@ -25,7 +25,7 @@ import {MoedaPipeModule} from "../pipe/moeda/moeda.pipe.module";
     TableModule,
     HttpClientModule,
     FormsModule,
-    MoedaPipeModule
+    CurrencyFormatPipeModule
   ],
   declarations: [
     VendaListComponent,

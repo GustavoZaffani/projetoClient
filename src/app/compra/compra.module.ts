@@ -17,7 +17,7 @@ import {CompraService} from './compra.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {CompraRouting} from './compra.routing.module';
-import {MoedaPipeModule} from '../pipe/moeda/moeda.pipe.module';
+import {CurrencyFormatPipeModule} from "../pipe/currencyFormat/currencyFormat.pipe.module";
 
 @NgModule ({
   imports: [
@@ -33,8 +33,8 @@ import {MoedaPipeModule} from '../pipe/moeda/moeda.pipe.module';
     HttpClientModule,
     AutoCompleteModule,
     CompraRouting,
-    MoedaPipeModule,
-    CheckboxModule
+    CheckboxModule,
+    CurrencyFormatPipeModule
   ],
   declarations: [
     CompraFormComponent,

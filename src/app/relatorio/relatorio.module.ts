@@ -7,9 +7,10 @@ import {FormsModule} from "@angular/forms";
 import {TableModule} from "primeng/table";
 import {HttpClientModule} from "@angular/common/http";
 import {ButtonModule} from "primeng/button";
-import {RelatorioService} from "./relatorio.service";
-import {MoedaPipeModule} from "../pipe/moeda/moeda.pipe.module";
 import {TooltipModule} from "primeng/primeng";
+import {CompraService} from "../compra/compra.service";
+import {VendaService} from "../venda/venda.service";
+import {CurrencyFormatPipeModule} from "../pipe/currencyFormat/currencyFormat.pipe.module";
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import {TooltipModule} from "primeng/primeng";
     TableModule,
     HttpClientModule,
     ButtonModule,
-    MoedaPipeModule,
+    CurrencyFormatPipeModule,
     TooltipModule
   ],
   declarations: [
@@ -30,7 +31,8 @@ import {TooltipModule} from "primeng/primeng";
     RelatorioComponent
   ],
   providers: [
-    RelatorioService
+    CompraService,
+    VendaService
   ]
 })
 export class RelatorioModule {

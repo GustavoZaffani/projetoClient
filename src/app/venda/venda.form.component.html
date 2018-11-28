@@ -98,7 +98,6 @@
         <tr>
           <th>Código</th>
           <th>Veículo</th>
-          <th>Quantidade</th>
           <th>Valor Unitário</th>
           <th>Desconto %</th>
           <th>Valor Total</th>
@@ -109,13 +108,12 @@
         <tr>
           <td>{{rowData.veiculo.id}}</td>
           <td>{{rowData.veiculo.modelo}}</td>
-          <td>{{rowData.quantidade}}</td>
-          <td>{{rowData.valorUnitario | moeda}}</td>
+          <td>{{rowData.valorUnitario | currencyFormat}}</td>
           <td *ngIf="rowData.desconto">
             {{rowData.desconto}}
           </td>
           <td *ngIf="!rowData.desconto">-</td>
-          <td>{{rowData.valorTotal | moeda}}</td>
+          <td>{{rowData.valorTotal | currencyFormat}}</td>
         </tr>
       </ng-template>
 
@@ -124,9 +122,8 @@
           <td class="d-none d-lg-table-cell">&nbsp;</td>
           <td class="d-none d-lg-table-cell">&nbsp;</td>
           <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
           <td>Valor Final</td>
-          <td>{{totalItens | moeda}}</td>
+          <td>{{totalItens | currencyFormat}}</td>
         </tr>
       </ng-template>
     </p-table>
@@ -244,7 +241,7 @@
             label="Voltar"
             icon="pi pi-times"
             class="ui-button-secondary"
-            (click)="fechar()"></button>
+            (click)="fecharDialog()"></button>
   </p-footer>
 </p-dialog>
 

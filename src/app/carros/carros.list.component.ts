@@ -49,7 +49,7 @@ export class CarrosListComponent implements OnInit {
             this.atualizaTabela();
             this.messageService.add({severity: 'success', detail: 'Registro excluído com sucesso!'});
           }, error => {
-            console.log(error);
+            this.messageService.add({severity: 'error', detail: 'Não foi possível excluir o registro!'});
           });
       }
     });

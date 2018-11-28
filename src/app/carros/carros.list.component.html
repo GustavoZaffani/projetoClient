@@ -48,8 +48,8 @@
           <td>{{rowData.marca}}</td>
           <td>{{rowData.modelo}}</td>
           <td>{{rowData.anoFabricacao}}</td>
-          <td>{{rowData.precoCusto | moeda}}</td>
-          <td>{{rowData.precoVenda | moeda}}</td>
+          <td>{{rowData.precoCusto | currencyFormat}}</td>
+          <td>{{rowData.precoVenda | currencyFormat}}</td>
           <td>
             <button pTooltip="Editar"
                     class="botao-tabela"

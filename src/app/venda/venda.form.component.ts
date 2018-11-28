@@ -8,8 +8,9 @@ import {CompraService} from '../compra/compra.service';
 import {Compra} from '../compra/compra';
 import {NgForm} from '@angular/forms';
 import {VendaItem} from "./vendaItem";
-import {MessageService} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
 import * as moment from "moment";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-form-venda',
@@ -28,6 +29,8 @@ export class VendaFormComponent implements OnInit{
   vendaItemToAdd: VendaItem;
   totalItens: number;
   venda: Venda;
+  update = false;
+  veiculo: Compra;
 
   @ViewChild('form') form: NgForm;
   @Output() onCancel = new EventEmitter<void>();
@@ -42,7 +45,8 @@ export class VendaFormComponent implements OnInit{
               private vendaService: VendaService,
               private compraService: CompraService,
               private messageService: MessageService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private confirmationService: ConfirmationService) {
   }
 
   ngOnInit(): void {
@@ -50,9 +54,11 @@ export class VendaFormComponent implements OnInit{
     this.venda = new Venda();
     this.route.params.subscribe( params => {
       if(params['id']) {
+        this.update = true;
         this.vendaService.findOne(params['id'])
           .subscribe(e => {
             this.venda = e;
+            this.totalItens = this.venda.vlrTotal;
           })
       }
     });
@@ -63,24 +69,25 @@ export class VendaFormComponent implements OnInit{
       if (this.vendaItemToAdd.desconto) {
         this.vendaItemToAdd.valorTotal = this.vendaItemToAdd.valorUnitario - ((this.vendaItemToAdd.valorUnitario) * (this.vendaItemToAdd.desconto / 100));
       } else {
-        this.vendaItemToAdd.valorTotal = this.vendaItemToAdd.quantidade * this.vendaItemToAdd.valorUnitario;
+        this.vendaItemToAdd.valorTotal = this.vendaItemToAdd.valorUnitario;
       }
 
     } else {
-      console.log('Necessário informar o veículo.');
+      this.messageService.add({severity: 'warn', summary: 'Necessário informar o veículo!'});
     }
   }
 
   preencheValor() {
     this.vendaItemToAdd.valorUnitario = this.vendaItemToAdd.veiculo.precoVenda;
+    this.vendaItemToAdd.valorTotal = this.vendaItemToAdd.valorUnitario;
   }
 
   voltar() {
-    this.router.navigate(['/vendas']);
+    window.history.back();
   }
 
-  fechar(): void {
-    // TODO escontrar uma forma de fechar o modal
+  fecharDialog(): void {
+    this.display = false;
   }
 
   findClientes($event) {
@@ -100,6 +107,7 @@ export class VendaFormComponent implements OnInit{
   findVeiculos($event) {
     this.compraService.complete($event.query)
       .subscribe(e => {
+
         this.veiculosList = e;
       });
   }
@@ -110,14 +118,32 @@ export class VendaFormComponent implements OnInit{
       this.vendaService.save(this.venda)
         .subscribe(e => {
           this.venda = e;
-          this.messageService.add({severity: 'success', detail: 'Venda realizada com sucesso!'});
-          this.voltar();
-        })
+          if(this.update) {
+            this.messageService.add({severity: 'success', detail: 'Venda atualizada com sucesso!'});
+          } else {
+            this.messageService.add({severity: 'success', detail: 'Venda realizada com sucesso!'});
+            setTimeout(() => {
+              this.confirmationService.confirm( {
+                message: 'Gostaria de realizar uma nova venda?',
+                acceptLabel: 'Sim',
+                rejectLabel: 'Não',
+                accept: () => {
+                  this.venda = new Venda();
+                }
+              });
+            },1200);
+          }
+          setTimeout(() => {
+            this.voltar();
+          }, 1500);
+        });
+      this.atualizarCarros();
     } else {
       this.validateForm = true;
       console.log('Não passou pela validação!');
     }
   }
+
   inserirTable(event) {
     if (!this.venda.itens){
       this.venda.itens = [];
@@ -131,5 +157,19 @@ export class VendaFormComponent implements OnInit{
 
     this.totalItens += this.vendaItemToAdd.valorTotal;
     this.venda.vlrTotal = this.totalItens;
+  }
+
+  atualizarCarros() {
+    this.venda.itens.forEach( veiculos =>{
+      this.compraService.findOne(veiculos.veiculo.id)
+        .subscribe(e => {
+          this.veiculo = e;
+          this.veiculo.vendido = true;
+          this.compraService.save(this.veiculo)
+            .subscribe( e => {
+              this.veiculo = e;
+            })
+        });
+    });
   }
 }
