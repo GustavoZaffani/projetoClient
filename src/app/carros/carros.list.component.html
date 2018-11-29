@@ -8,14 +8,14 @@
         <span>Carros</span>
         <button type="button"
                 (click)="novaCompra()"
-                class="btn btn-link btn-card">
+                class="btn btn-link-table btn-card">
           <i class="fa fa-2x fa-plus-circle"></i>
           <span style="padding-left: 10px">Nova Compra</span>
         </button>
       </div>
     </p-header>
 
-    <p-table #dt [value]="compras" [paginator]="true" [rows]="11" [columns]="cols">
+    <p-table #dt [value]="compras" [paginator]="true" [rows]="10" [columns]="cols">
 
       <ng-template pTemplate="caption">
         <div>
@@ -32,7 +32,7 @@
           <th *ngFor="let col of columns">
             {{col.header}}
           </th>
-          <th width="100px">Opções</th>
+          <th>Opções</th>
         </tr>
       </ng-template>
 
@@ -48,18 +48,19 @@
           <td>{{rowData.marca}}</td>
           <td>{{rowData.modelo}}</td>
           <td>{{rowData.anoFabricacao}}</td>
-          <td>{{rowData.precoCusto | currencyFormat}}</td>
           <td>{{rowData.precoVenda | currencyFormat}}</td>
           <td>
             <button pTooltip="Editar"
-                    class="botao-tabela"
+                    type="button"
+                    class="btn btn-link-table"
                     tooltipPosition="top"
                     (click)="editar(rowData.id)">
               <i class="fa fa-edit"></i>
             </button>
 
             <button pTooltip="Excluir"
-                    class="botao-tabela"
+                    type="button"
+                    class="btn btn-link-table"
                     (click)="excluir(rowData.id)"
                     tooltipPosition="top">
               <i class="fa fa-trash"></i>

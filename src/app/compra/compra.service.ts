@@ -22,6 +22,10 @@ export class CompraService {
     return this.http.get<Compra[]>(this.url);
   }
 
+  findAllDisponiveis(): Observable<Compra[]> {
+    return this.http.get<Compra[]>(this.url +'/disponivel');
+  }
+
   save(compra: Compra): Observable<Compra> {
     return this.http.post<Compra>(this.url, compra);
   }

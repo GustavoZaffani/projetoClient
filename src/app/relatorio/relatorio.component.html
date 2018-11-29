@@ -44,7 +44,7 @@
 
           <td>
             <button pTooltip="Visualizar Dados"
-                    class="botao-tabela"
+                    class="btn btn-link-table"
                     tooltipPosition="top"
                     (click)=visualizarDados(rowData.id,rowData.tipo)>
               <i class="fa fa-info"></i>
@@ -55,29 +55,29 @@
 
       <ng-template pTemplate="footer">
 
-        <tr class="borda-superior">
-          <td>Total de Vendas</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-            <td>{{totalVendas | currencyFormat}}</td>
-        </tr>
+          <tr class="borda-superior">
+            <td>Total de Vendas</td>
+            <td class="d-none d-lg-table-cell">&nbsp;</td>
+            <td class="d-none d-lg-table-cell">&nbsp;</td>
+            <td class="d-none d-lg-table-cell">&nbsp;</td>
+              <td>{{totalVendas | currencyFormat}}</td>
+          </tr>
 
-        <tr class="borda-superior">
-          <td>Total de Despesas</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td>{{totalDespesas | currencyFormat}}</td>
-        </tr>
+          <tr class="borda-superior">
+            <td>Total de Despesas</td>
+            <td class="d-none d-lg-table-cell">&nbsp;</td>
+            <td class="d-none d-lg-table-cell">&nbsp;</td>
+            <td class="d-none d-lg-table-cell">&nbsp;</td>
+            <td>{{totalDespesas | currencyFormat}}</td>
+          </tr>
 
-        <tr class="borda-superior">
-          <td>Resultado Final</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td class="d-none d-lg-table-cell">&nbsp;</td>
-          <td colspan="resultadoFinal">{{resultadoFinal | currencyFormat}}</td>
-        </tr>
+          <tr class="borda-superior">
+            <td>Resultado Final</td>
+            <td class="d-none d-lg-table-cell">&nbsp;</td>
+            <td class="d-none d-lg-table-cell">&nbsp;</td>
+            <td class="d-none d-lg-table-cell">&nbsp;</td>
+            <td colspan="resultadoFinal">{{resultadoFinal | currencyFormat}}</td>
+          </tr>
       </ng-template>
     </p-table>
 

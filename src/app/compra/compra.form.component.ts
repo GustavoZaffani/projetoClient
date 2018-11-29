@@ -26,10 +26,12 @@ export class CompraFormComponent implements OnInit {
               private messageService: MessageService,
               private route: ActivatedRoute,
               private confirmationService: ConfirmationService,
-              private pessoaService:  PessoaService) { }
+              private pessoaService:  PessoaService) {
+  }
 
   ngOnInit() {
     this.compra = new Compra();
+    this.compra.vendido = false;
 
     this.route.params.subscribe(params => {
       if (params['id']) {

@@ -8,7 +8,7 @@
         <span>Lista de Vendas</span>
         <button type="button"
                 (click)="novaVenda()"
-                class="btn btn-link btn-card">
+                class="btn btn-link-table btn-card">
           <i class="fa fa-2x fa-plus-circle"></i>
         </button>
       </div>
@@ -31,7 +31,7 @@
           <th *ngFor="let col of columns">
             {{col.header}}
           </th>
-          <th width="100px">Opções</th>
+          <th width="120px">Opções</th>
         </tr>
       </ng-template>
 
@@ -45,13 +45,13 @@
           <td>
             <button pTooltip="Editar"
                     tooltipPosition="top"
-                    class="botao-tabela"
+                    class="btn btn-link-table"
                     (click)="editar(rowData.id)">
               <i class="fa fa-edit"></i>
             </button>
 
             <button pTooltip="Excluir"
-                    class="botao-tabela"
+                    class="btn btn-link-table"
                     (click)="excluir(rowData.id)"
                     tooltipPosition="top">
               <i class="fa fa-trash"></i>

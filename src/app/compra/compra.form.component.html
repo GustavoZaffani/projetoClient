@@ -90,8 +90,10 @@
           <div class="form-group">
             <label for="anoMod">Ano Modelo</label>
             <input name="anoMod"
-                   type="number"
+                   type="text"
                    id="anoMod"
+                   minlength="4"
+                   maxlength="4"
                    [(ngModel)]="compra.anoModelo"
                    pTooltip="Informe o Ano do Modelo"
                    tooltipPosition="top"
@@ -190,7 +192,7 @@
                    pTooltip="Informe o Nro do Chassi"
                    tooltipPosition="top"
                    class="form-control">
-            <div *ngIf="categoria.invalid && validateForm" class="invalid-feedback">
+            <div *ngIf="chassi.invalid && validateForm" class="invalid-feedback">
               Necessário ter 17 caracteres!
             </div>
           </div>
@@ -237,15 +239,22 @@
         <div class="col-2 col-xl-2">
           <div class="form-group">
             <label for="dtCompra">Data da Compra</label>
+            <span class="campo-obrigatorio">*</span>
             <p-calendar name="dtCompra"
                         id="dtCompra"
                         [(ngModel)]="compra.dataCompra"
                         pTooltip="Informe a Data da Compra"
                         tooltipPosition="top"
+                        #data="ngModel"
+                        required
+                        [ngClass]="{'is-invalid' : data.invalid && validateForm}"
                         [style]="{'width':'100%'}"
                         [inputStyle]="{'width':'100%'}"
                         dataType="string"
                         dateFormat="dd/mm/yy">
+              <div *ngIf="data.invalid && validateForm" class="invalid-feedback">
+                Campo Obrigatório!
+              </div>
             </p-calendar>
           </div>
         </div>
@@ -336,13 +345,11 @@
             <label for="vendido">Vendido</label>
             <p-checkbox [(ngModel)]="compra.vendido"
                         name="vendido"
+                        class="form-control sem-borda"
                         id="vendido"
+                        [disabled]="true"
                         binary="true">
             </p-checkbox>
-            <!--<input name="qtde"-->
-            <!--id="qtde"-->
-            <!--type="checkbox"-->
-            <!--class="form-check-input form-control">-->
           </div>
         </div>
 

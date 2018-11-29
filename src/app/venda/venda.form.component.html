@@ -87,9 +87,9 @@
         <span>Veículos</span>
         <button type="button"
                 (click)="showDialog()"
-                class="btn btn-link ripple btn-card">
-          <i class="fa fa-plus-circle"></i>
-          <span>Adicionar Veículo</span>
+                class="btn btn-link-table btn-card">
+          <i class="fa fa-2x fa-plus-circle"></i>
+          <span style="padding-left: 10px">Adicionar Veículo</span>
         </button>
       </div>
     </p-header>
@@ -154,26 +154,22 @@
           [modal]="true"
           [responsive]="true"
           *ngIf="vendaItemToAdd"
-          [width]="1000"
-          [minWidth]="600"
-          [minY]="70"
-          [baseZIndex]="10000">
+          [width]="600">
 
   <div class="row">
 
-    <div class="col-12 col-md-12 col-xl-12">
-      <div class="form-group">
+    <div class="col-12">
+      <div class="form-group" >
         <label for="veiculo">Veículo</label>
         <p-autoComplete name="veiculo"
                         inputId="veiculo"
                         field="modelo"
                         (onSelect)="preencheValor()"
-                        [style]="{'width':'96%'}"
-                        [inputStyle]="{'width':'96%'}"
                         [(ngModel)]="vendaItemToAdd.veiculo"
                         [suggestions]="veiculosList"
                         (completeMethod)="findVeiculos($event)"
                         [dropdown]="true"
+                        appendTo="body"
                         (onClear)="vendaItemToAdd.veiculo = null"
                         [forceSelection]="true">
           <ng-template let-compra pTemplate="item">

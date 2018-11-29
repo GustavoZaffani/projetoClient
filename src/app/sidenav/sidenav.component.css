@@ -6,7 +6,6 @@
   list-style-type: none;
   margin-left: 15px;
   color: #606060;
-  border-bottom: rgba(214, 219, 204, 0.6) 1px solid;
   line-height: 60px;
 }
 
@@ -23,14 +22,14 @@
   opacity: 0.8;
   margin-left: 10px;
 }
-.mouseOver {
-  background-color: #92b4bd;
+.mouseOver:hover{
+  background-color: #dededee0;
 }
 .menu-principal {
   font-size: 1.5rem;
   font-family: FontAwesome;
   text-align: center;
-  border-bottom: rgba(174, 179, 164, 0.6) 1px solid;
+  border-bottom: rgba(174, 179, 164, 0.22) 1px solid;
   padding: 15px;
   margin-top: 0;
 }
@@ -43,4 +42,7 @@
 }
 .sidenav {
   background-color: #fbfbfb !important;
+}
+.ui-grid-col-12 {
+  border-bottom: rgba(214, 219, 204, 0.6) 1px solid;
 }

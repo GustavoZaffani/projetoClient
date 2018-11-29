@@ -8,22 +8,22 @@
           <span>Lista de Pessoas</span>
           <button type="button"
                   (click)="novoCadastro()"
-                  class="btn btn-link ripple btn-card">
+                  class="btn btn-link-table ripple btn-card">
             <i class="fa fa-2x fa-plus-circle"></i>
           </button>
         </div>
     </p-header>
 
-    <p-table #dt [value]="pessoas" [paginator]="true" [rows]="11" [columns]="cols">
+    <p-table #dt [value]="pessoas" [paginator]="true" [rows]="10" [columns]="cols">
 
       <ng-template pTemplate="caption">
-        <div>
-          <input type="text"
-                 pInputText
-                 placeholder="Pesquisar"
-                 (input)="dt.filterGlobal($event.target.value, 'contains')"
-                 class="form-control">
-        </div>
+          <div>
+            <input type="text"
+                   pInputText
+                   placeholder="Pesquisar"
+                   (input)="dt.filterGlobal($event.target.value, 'contains')"
+            class="form-control">
+          </div>
       </ng-template>
 
       <ng-template pTemplate="header" let-columns>
@@ -31,7 +31,7 @@
           <th *ngFor="let col of columns">
             {{col.header}}
           </th>
-          <th width="100px">Opções</th>
+          <th style="width: 120px">Opções</th>
         </tr>
       </ng-template>
 
@@ -53,14 +53,14 @@
           </td>
           <td>
             <button pTooltip="Editar"
-                    class="botao-tabela"
+                    class="btn btn-link-table"
                     tooltipPosition="top"
                     (click)="editar(rowData.id)">
               <i class="fa fa-edit"></i>
             </button>
 
             <button pTooltip="Excluir"
-                    class="botao-tabela"
+                    class="btn btn-link-table"
                     tooltipPosition="top"
                     (click)="excluir(rowData.id)">
               <i class="fa fa-trash"></i>

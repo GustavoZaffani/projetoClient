@@ -25,7 +25,6 @@ export class CarrosListComponent implements OnInit {
       {field: 'marca', header: 'Marca'},
       {field: 'modelo', header: 'Modelo'},
       {field: 'anoFabricacao', header: 'Ano de Fabricação'},
-      {field: 'precoCusto', header: 'Preço de Custo'},
       {field: 'precoVenda', header: 'Preço de Venda'},
     ];
   }
@@ -43,6 +42,7 @@ export class CarrosListComponent implements OnInit {
       message: 'Tem certeza que deseja excluir esse registro?',
       acceptLabel: 'Sim',
       rejectLabel: 'Não',
+      header: 'Confirmação',
       accept: () => {
         this.service.excluir(id)
           .subscribe(e => {
@@ -60,7 +60,7 @@ export class CarrosListComponent implements OnInit {
   }
 
   atualizaTabela() {
-    this.service.findAll()
+    this.service.findAllDisponiveis()
       .subscribe(e => this.compras = e);
   }
 }

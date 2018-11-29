@@ -10,7 +10,6 @@ import {NgForm} from '@angular/forms';
 import {VendaItem} from "./vendaItem";
 import {ConfirmationService, MessageService} from "primeng/api";
 import * as moment from "moment";
-import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-form-venda',
@@ -107,19 +106,19 @@ export class VendaFormComponent implements OnInit{
   findVeiculos($event) {
     this.compraService.complete($event.query)
       .subscribe(e => {
-
         this.veiculosList = e;
       });
   }
 
   finalizarVenda() {
-    if (this.form.valid) {
+    if (this.form.valid && this.venda.itens) {
       this.venda.dataVenda = moment(new Date()).format("DD/MM/YYYY");
       this.vendaService.save(this.venda)
         .subscribe(e => {
           this.venda = e;
           if(this.update) {
             this.messageService.add({severity: 'success', detail: 'Venda atualizada com sucesso!'});
+            setTimeout(() => this.voltar(), 1500);
           } else {
             this.messageService.add({severity: 'success', detail: 'Venda realizada com sucesso!'});
             setTimeout(() => {
@@ -129,34 +128,40 @@ export class VendaFormComponent implements OnInit{
                 rejectLabel: 'Não',
                 accept: () => {
                   this.venda = new Venda();
+                },
+                reject: () => {
+                  setTimeout(() => this.voltar(), 1500);
                 }
               });
             },1200);
           }
-          setTimeout(() => {
-            this.voltar();
-          }, 1500);
         });
       this.atualizarCarros();
     } else {
       this.validateForm = true;
-      console.log('Não passou pela validação!');
+      this.messageService.add({severity: 'warn', summary: 'Todos os campos devem ser preenchidos!'});
     }
   }
 
   inserirTable(event) {
-    if (!this.venda.itens){
-      this.venda.itens = [];
-    }
-    this.venda.itens.push(this.vendaItemToAdd);
-    this.display = false;
+    if(this.vendaItemToAdd.veiculo) {
+      if (!this.venda.itens){
+        this.venda.itens = [];
+      }
 
-    if(!this.totalItens) {
-      this.totalItens = 0;
-    }
+      this.venda.itens.push(this.vendaItemToAdd);
 
-    this.totalItens += this.vendaItemToAdd.valorTotal;
-    this.venda.vlrTotal = this.totalItens;
+      this.display = false;
+
+      if(!this.totalItens) {
+        this.totalItens = 0;
+      }
+
+      this.totalItens += this.vendaItemToAdd.valorTotal;
+      this.venda.vlrTotal = this.totalItens;
+    } else {
+      this.messageService.add({severity: 'warn', summary: 'É necessário escolher um veículo!'});
+    }
   }
 
   atualizarCarros() {

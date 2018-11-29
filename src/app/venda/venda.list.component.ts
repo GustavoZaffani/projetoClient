@@ -46,7 +46,6 @@ export class VendaListComponent implements OnInit {
       acceptLabel: 'Sim',
       rejectLabel: 'Não',
       header: 'Confirmação',
-      icon: 'fa fa-question-circle-o',
       accept: () => {
         this.service.excluir(id)
           .subscribe( e => {

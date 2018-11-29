@@ -45,7 +45,6 @@ export class PessoaFormComponent implements OnInit {
       this.service.save(this.pessoa)
         .subscribe(e => {
           this.pessoa = e;
-
           if(this.update) {
             this.messageService.add({severity: 'success', detail: 'Cadastro atualizado com sucesso!'});
           } else {

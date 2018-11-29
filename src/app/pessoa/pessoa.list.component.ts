@@ -40,6 +40,7 @@ export class PessoaListComponent implements OnInit {
       message: 'Tem certeza que deseja excluir o registro?',
       acceptLabel: 'Sim',
       rejectLabel: 'Não',
+      header: 'Confirmação',
       accept: () => {
         this.service.excluir(id)
           .subscribe(e => {

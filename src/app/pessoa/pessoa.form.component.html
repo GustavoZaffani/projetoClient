@@ -158,11 +158,18 @@
             <label for="rg">RG</label>
             <input name="rg"
                    id="rg"
-                   type="number"
+                   type="text"
+                   minlength="9"
+                   maxlength="9"
+                   #rg="ngModel"
+                   [ngClass]="{'is-invalid' : rg.invalid && validateForm}"
                    [(ngModel)]="pessoa.rg"
                    pTooltip="Informe o RG"
                    tooltipPosition="top"
                    class="form-control">
+            <div *ngIf="rg.invalid && validateForm" class="invalid-feedback">
+              Necessário ter 9 números!
+            </div>
           </div>
         </div>
 
@@ -171,11 +178,18 @@
             <label for="ie">Inscrição Estadual</label>
             <input name="ie"
                    id="ie"
-                   type="number"
+                   type="text"
+                   #ie="ngModel"
+                   [ngClass]="{'is-invalid' : ie.invalid && validateForm}"
+                   minlength="9"
+                   maxlength="9"
                    [(ngModel)]="pessoa.ie"
                    pTooltip="Informe a IE"
                    tooltipPosition="top"
                    class="form-control">
+            <div *ngIf="ie.invalid && validateForm" class="invalid-feedback">
+              Necessário ter 9 números!
+            </div>
           </div>
         </div>
 
@@ -367,7 +381,13 @@
                    [(ngModel)]="pessoa.email"
                    pTooltip="Informe o Email"
                    tooltipPosition="top"
+                   email
+                   #email="ngModel"
+                   [ngClass]="{'is-invalid' : email.invalid && validateForm}"
                    class="form-control">
+            <div *ngIf="email.invalid && validateForm" class="invalid-feedback">
+              Informe um email válido!
+            </div>
           </div>
         </div>
 
