@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import {SidenavModule} from './sidenav/sidenav.module';
 import {ToolbarrModule} from './toolbar/toolbar.module';

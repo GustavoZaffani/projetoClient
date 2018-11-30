@@ -56,6 +56,7 @@ export class CompraFormComponent implements OnInit {
           this.compra = e;
           if(this.update) {
             this.messageService.add({severity: 'success', detail: 'Cadastro atualizado com sucesso!'});
+            setTimeout(() => this.voltar(), 1200);
           } else {
             this.messageService.add({severity: 'success', detail: 'Cadastro salvo com sucesso!'});
             setTimeout(() => {
@@ -63,18 +64,20 @@ export class CompraFormComponent implements OnInit {
                 message: 'Gostaria de fazer um novo cadastro?',
                 acceptLabel: 'Sim',
                 rejectLabel: 'Não',
+                header: 'Confirmação',
                 accept: () => {
                   this.compra = new Compra();
+                },
+                reject: () => {
+                  setTimeout(() => this.voltar(), 1200);
                 }
               });
             }, 1500);
           }
-          setTimeout(() => {
-            this.voltar();
-          }, 1200);
         });
     } else {
       this.validateForm = true;
+      this.messageService.add({severity: 'warn', summary: 'Necessário preencher todos os campos obrigatórios!'});
     }
   }
 

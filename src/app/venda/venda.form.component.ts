@@ -32,7 +32,6 @@ export class VendaFormComponent implements OnInit{
   veiculo: Compra;
 
   @ViewChild('form') form: NgForm;
-  @Output() onCancel = new EventEmitter<void>();
 
   showDialog() {
     this.vendaItemToAdd = new VendaItem();
@@ -126,6 +125,7 @@ export class VendaFormComponent implements OnInit{
                 message: 'Gostaria de realizar uma nova venda?',
                 acceptLabel: 'Sim',
                 rejectLabel: 'Não',
+                header: 'Confirmação',
                 accept: () => {
                   this.venda = new Venda();
                 },
@@ -139,24 +139,23 @@ export class VendaFormComponent implements OnInit{
       this.atualizarCarros();
     } else {
       this.validateForm = true;
-      this.messageService.add({severity: 'warn', summary: 'Todos os campos devem ser preenchidos!'});
+      this.messageService.add({severity: 'warn', summary: 'Necessário preencher todos os campos!'});
     }
   }
 
   inserirTable(event) {
     if(this.vendaItemToAdd.veiculo) {
+
       if (!this.venda.itens){
         this.venda.itens = [];
       }
 
       this.venda.itens.push(this.vendaItemToAdd);
-
       this.display = false;
 
       if(!this.totalItens) {
         this.totalItens = 0;
       }
-
       this.totalItens += this.vendaItemToAdd.valorTotal;
       this.venda.vlrTotal = this.totalItens;
     } else {

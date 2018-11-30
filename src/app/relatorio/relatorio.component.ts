@@ -90,5 +90,6 @@ export class RelatorioComponent implements OnInit {
     this.calcularVendas();
     this.calcularCompras();
     this.resultadoFinal = this.totalVendas - this.totalDespesas;
+    console.log(this.relatorio);
   }
 }

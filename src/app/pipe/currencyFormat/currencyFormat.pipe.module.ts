@@ -1,6 +1,9 @@
-import {NgModule} from "@angular/core";
+import {LOCALE_ID, NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {CurrencyFormatPipe} from "./currencyFormat.pipe";
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
 
 @NgModule({
   imports: [
@@ -11,8 +14,9 @@ import {CurrencyFormatPipe} from "./currencyFormat.pipe";
   ],
   exports: [
     CurrencyFormatPipe
+  ],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt' }
   ]
 })
-export class CurrencyFormatPipeModule {
-
-}
+export class CurrencyFormatPipeModule {}

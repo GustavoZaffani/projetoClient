@@ -1,4 +1,7 @@
-.compra {
-  height: 38px !important;
-  width: 338px !important;
+.vendido {
+  background-color: #ff000040 !important;
+}
+
+.disponivel {
+  background-color: #0080002b !important;
 }

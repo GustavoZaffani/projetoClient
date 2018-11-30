@@ -28,6 +28,7 @@
 
       <ng-template pTemplate="header" let-columns>
         <tr>
+          <th width="1px">#</th>
           <th *ngFor="let col of columns">
             {{col.header}}
           </th>
@@ -38,6 +39,8 @@
       <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr [pSelectableRow]="rowData">
 
+          <td *ngIf="rowData.vendido == '0'" class="disponivel"></td>
+          <td *ngIf="rowData.vendido == '1'" class="vendido"></td>
           <td>{{rowData.id}}</td>
           <td>{{rowData.fornecedor?.nome}}</td>
           <td>{{rowData.marca}}</td>

@@ -17,6 +17,7 @@
             <input name="id"
                    id="id"
                    type="text"
+                   [(ngModel)]="venda.id"
                    class="form-control"
                    [disabled]="true">
           </div>
@@ -30,13 +31,10 @@
                             inputId="cliente"
                             [dropdown]="true"
                             appendTo="body"
-                            class="teste"
                             field="nome"
                             required
                             #cliente="ngModel"
                             [ngClass]="{'is-invalid' : cliente.invalid && validateForm}"
-                            [style]="{'width':'95%'}"
-                            [inputStyle]="{'width':'95%'}"
                             [(ngModel)]="venda.cliente"
                             [suggestions]="clienteList"
                             (completeMethod)="findClientes($event)"
@@ -59,12 +57,9 @@
             <span class="campo-obrigatorio">*</span>
             <p-autoComplete name="vendedor"
                             id="vendedor"
-                            class="teste"
                             [dropdown]="true"
                             field="nome"
                             appendTo="body"
-                            [style]="{'width':'96%'}"
-                            [inputStyle]="{'width':'96%'}"
                             [(ngModel)]="venda.vendedor"
                             [suggestions]="vendedorList"
                             (completeMethod)="findVendedor($event)"

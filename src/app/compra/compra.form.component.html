@@ -73,6 +73,7 @@
                    type="text"
                    id="anoFab"
                    required
+                   minlength="4"
                    maxlength="4"
                    #anoFab="ngModel"
                    [ngClass]="{'is-invalid' : anoFab.invalid && validateForm}"
@@ -81,7 +82,7 @@
                    tooltipPosition="top"
                    class="form-control">
             <div *ngIf="anoFab.invalid && validateForm" class="invalid-feedback">
-              Campo Obrigatório!
+              Preenchimento obrigatório de 4 números!
             </div>
           </div>
         </div>
@@ -282,9 +283,7 @@
                             field="nome"
                             #fornecedor="ngModel"
                             required
-                            [ngClass]="{ 'is-invalid' : fornecedor.invalid && validateForm}"
-                            [style]="{'width':'88%'}"
-                            [inputStyle]="{'width':'88%'}"
+                            [ngStyle]="{ 'is-invalid' : fornecedor.invalid && validateForm}"
                             [(ngModel)]="compra.fornecedor"
                             [dropdown]="true"
                             [suggestions]="fornecedorList"

@@ -47,6 +47,7 @@ export class PessoaFormComponent implements OnInit {
           this.pessoa = e;
           if(this.update) {
             this.messageService.add({severity: 'success', detail: 'Cadastro atualizado com sucesso!'});
+            setTimeout(() => this.voltar(), 1500);
           } else {
             this.messageService.add({severity: 'success', detail: 'Cadastro salvo com sucesso!'});
             setTimeout(() => {
@@ -54,18 +55,20 @@ export class PessoaFormComponent implements OnInit {
                 message: 'Gostaria de fazer um novo cadastro?',
                 acceptLabel: 'Sim',
                 rejectLabel: 'Não',
+                header: 'Confirmação',
                 accept: () => {
                   this.pessoa = new Pessoa();
                 },
+                reject: () => {
+                  setTimeout(() => this.voltar(), 1500);
+                }
               });
             }, 1200);
           }
-          setTimeout(() => {
-            this.voltar();
-          }, 1500);
         });
     } else {
       this.validateForm = true;
+      this.messageService.add({severity: 'warn', summary: 'Necessário preencher todos os campos obrigatórios!'});
     }
   }
 
